@@ -1,11 +1,16 @@
+using System;
+
+
 namespace ScriptableObjectArchitecture
 {
-    [System.Serializable]
+    [Serializable]
     public sealed class SceneReference : BaseReference<SceneInfo, SceneVariable>
     {
         public SceneReference()
         {
         }
+
+
         public SceneReference(SceneInfo value) : base(value)
         {
         }

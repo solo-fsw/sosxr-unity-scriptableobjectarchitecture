@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+
 namespace ScriptableObjectArchitecture.Examples
 {
     public class UnitHealth : MonoBehaviour
@@ -9,12 +10,15 @@ namespace ScriptableObjectArchitecture.Examples
         [SerializeField]
         private bool _resetOnStartup = true;
         [SerializeField]
-        private FloatReference _startingHealth = default(FloatReference);
+        private FloatReference _startingHealth = default;
+
 
         private void Start()
         {
             if (_resetOnStartup)
+            {
                 Health.Value = _startingHealth.Value;
+            }
         }
     }
 }

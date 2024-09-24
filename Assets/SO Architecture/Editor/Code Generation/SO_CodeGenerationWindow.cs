@@ -2,6 +2,7 @@
 using UnityEditor.AnimatedValues;
 using UnityEngine;
 
+
 namespace ScriptableObjectArchitecture.Editor
 {
     public class SO_CodeGenerationWindow : EditorWindow
@@ -25,12 +26,12 @@ namespace ScriptableObjectArchitecture.Editor
 
         private readonly bool[,] _dependencyGraph = new bool[SO_CodeGenerator.TYPE_COUNT, SO_CodeGenerator.TYPE_COUNT]
         {
-            { false, true, false, false, true, false, },
-            { false, false, true, false, false, false, },
-            { false, false, false, false, false, true, },
-            { false, false, false, false, false, false, },
-            { false, false, false, false, false, false, },
-            { false, false, false, false, false, false, },
+            {false, true, false, false, true, false},
+            {false, false, true, false, false, false},
+            {false, false, false, false, false, true},
+            {false, false, false, false, false, false},
+            {false, false, false, false, false, false},
+            {false, false, false, false, false, false}
         };
 
         private readonly bool[] _states = new bool[SO_CodeGenerator.TYPE_COUNT];
@@ -41,7 +42,7 @@ namespace ScriptableObjectArchitecture.Editor
             "Reference",
             "Collection",
             "Unity Event",
-            "Variable",
+            "Variable"
         };
 
         private readonly bool[] _menuRequirement = new bool[SO_CodeGenerator.TYPE_COUNT]
@@ -56,11 +57,14 @@ namespace ScriptableObjectArchitecture.Editor
         private AnimBool _menuAnim;
         private AnimBool _clampedValueHelpBoxAnim;
 
+
         [MenuItem("Window/SO Code Generation")]
         private static void ShowWindow()
         {
             GetWindow(typeof(SO_CodeGenerationWindow), true, "SO Code Generation");
         }
+
+
         private void OnEnable()
         {
             _menuAnim = new AnimBool();
@@ -71,6 +75,8 @@ namespace ScriptableObjectArchitecture.Editor
 
             _order = SOArchitecture_Settings.Instance.DefaultCreateAssetMenuOrder;
         }
+
+
         private void OnGUI()
         {
             TypeSelection();
@@ -80,30 +86,34 @@ namespace ScriptableObjectArchitecture.Editor
             DataFields();
 
             if (string.IsNullOrEmpty(_typeName) || string.IsNullOrEmpty(_namespace))
+            {
                 GUI.enabled = false;
+            }
 
             if (GUILayout.Button("Generate"))
             {
-                SO_CodeGenerator.Data data = new SO_CodeGenerator.Data()
+                var data = new SO_CodeGenerator.Data
                 {
                     Types = _states,
                     TypeName = _typeName,
-                    MenuName = RequiresMenu() ? _menuName : default(string),
+                    MenuName = RequiresMenu() ? _menuName : default,
                     Namespace = _namespace,
-                    Order = _order,
+                    Order = _order
                 };
 
                 SO_CodeGenerator.Generate(data);
                 AssetDatabase.Refresh();
             }
         }
+
+
         private void TypeSelection()
         {
             EditorGUILayout.LabelField("Select Type(s)", EditorStyles.boldLabel);
 
-            for (int i = 0; i < SO_CodeGenerator.TYPE_COUNT; i++)
+            for (var i = 0; i < SO_CodeGenerator.TYPE_COUNT; i++)
             {
-                bool isDepending = IsDepending(i);
+                var isDepending = IsDepending(i);
 
                 if (isDepending)
                 {
@@ -117,6 +127,8 @@ namespace ScriptableObjectArchitecture.Editor
                 EditorGUI.EndDisabledGroup();
             }
         }
+
+
         private void DataFields()
         {
             EditorGUILayout.LabelField("Information", EditorStyles.boldLabel);
@@ -125,49 +137,63 @@ namespace ScriptableObjectArchitecture.Editor
             _typeName = EditorGUILayout.TextField(new GUIContent("Type Name", "Case sensitive, ensure exact match with actual type name"), _typeName);
 
             if (string.IsNullOrEmpty(_typeName))
+            {
                 EditorGUILayout.HelpBox("Please fill out the Type Name", MessageType.Error);
+            }
 
             // Namespace
             _namespace = EditorGUILayout.TextField(new GUIContent("Namespace", "Case sensitive, ensure exact match with actual namespace"), _namespace);
 
             if (string.IsNullOrEmpty(_namespace))
+            {
                 EditorGUILayout.HelpBox("Please fill out the Namespace", MessageType.Error);
+            }
 
             // Menu name.
             _menuAnim.target = RequiresMenu();
             EditorGUILayout.BeginFadeGroup(_menuAnim.faded);
 
             if (_menuAnim.value)
+            {
                 _menuName = EditorGUILayout.TextField("Menu Name", _menuName);
+            }
 
             EditorGUILayout.EndFadeGroup();
 
             // Order.
             _order = EditorGUILayout.IntField(new GUIContent("Order", "Use default if unsure"), _order);
         }
+
+
         /// <summary>
-        /// Polls the currently selected state types to determine whether any require menus
+        ///     Polls the currently selected state types to determine whether any require menus
         /// </summary>
         /// <returns></returns>
         private bool RequiresMenu()
         {
-            for (int i = 0; i < SO_CodeGenerator.TYPE_COUNT; i++)
+            for (var i = 0; i < SO_CodeGenerator.TYPE_COUNT; i++)
             {
                 if (_states[i] && _menuRequirement[i])
+                {
                     return true;
+                }
             }
 
             return false;
         }
+
+
         /// <summary>
-        /// Given an index, polls the dependency graph, and returns whether anyone is depending on it
+        ///     Given an index, polls the dependency graph, and returns whether anyone is depending on it
         /// </summary>
         private bool IsDepending(int index)
         {
-            for (int i = 0; i < SO_CodeGenerator.TYPE_COUNT; i++)
+            for (var i = 0; i < SO_CodeGenerator.TYPE_COUNT; i++)
             {
                 if (_states[i] && _dependencyGraph[i, index])
+                {
                     return true;
+                }
             }
 
             return false;

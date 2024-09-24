@@ -1,23 +1,31 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+
 
 namespace ScriptableObjectArchitecture
 {
-    [System.Serializable]
+    [Serializable]
     public class BaseReference<TBase, TVariable> : BaseReference where TVariable : BaseVariable<TBase>
     {
-        public BaseReference() { }
+        [SerializeField]
+        protected bool _useConstant = false;
+        [SerializeField]
+        protected TBase _constantValue = default;
+        [SerializeField]
+        protected TVariable _variable = default;
+
+
+        public BaseReference()
+        {
+        }
+
+
         public BaseReference(TBase baseValue)
         {
             _useConstant = true;
             _constantValue = baseValue;
         }
 
-        [SerializeField]
-        protected bool _useConstant = false;
-        [SerializeField]
-        protected TBase _constantValue = default(TBase);
-        [SerializeField]
-        protected TVariable _variable = default(TVariable);
 
         public TVariable Variable
         {
@@ -31,10 +39,7 @@ namespace ScriptableObjectArchitecture
 
         public TBase Value
         {
-            get
-            {
-                return (_useConstant || _variable == null) ? _constantValue : _variable.Value;
-            }
+            get => _useConstant || _variable == null ? _constantValue : _variable.Value;
             set
             {
                 if (!_useConstant && _variable != null)
@@ -48,49 +53,66 @@ namespace ScriptableObjectArchitecture
                 }
             }
         }
-        public bool IsValueDefined
-        {
-            get
-            {
-                return _useConstant || _variable != null;
-            }
-        }
+
+        public bool IsValueDefined => _useConstant || _variable != null;
+
 
         public BaseReference CreateCopy()
         {
-            BaseReference<TBase, TVariable> copy = (BaseReference<TBase, TVariable>)System.Activator.CreateInstance(GetType());
+            var copy = (BaseReference<TBase, TVariable>) Activator.CreateInstance(GetType());
             copy._useConstant = _useConstant;
             copy._constantValue = _constantValue;
             copy._variable = _variable;
 
             return copy;
         }
+
+
         public void AddListener(IGameEventListener listener)
         {
             if (_variable != null)
+            {
                 _variable.AddListener(listener);
+            }
         }
+
+
         public void RemoveListener(IGameEventListener listener)
         {
             if (_variable != null)
+            {
                 _variable.RemoveListener(listener);
+            }
         }
-        public void AddListener(System.Action action)
+
+
+        public void AddListener(Action action)
         {
             if (_variable != null)
+            {
                 _variable.AddListener(action);
+            }
         }
-        public void RemoveListener(System.Action action)
+
+
+        public void RemoveListener(Action action)
         {
             if (_variable != null)
+            {
                 _variable.RemoveListener(action);
+            }
         }
+
+
         public override string ToString()
         {
             return Value.ToString();
         }
     }
 
+
     //Can't get property drawer to work with generic arguments
-    public abstract class BaseReference { } 
+    public abstract class BaseReference
+    {
+    }
 }

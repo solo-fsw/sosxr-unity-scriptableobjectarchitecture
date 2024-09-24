@@ -1,19 +1,17 @@
 ﻿using UnityEditor;
-using UnityEngine;
 using UnityEditorInternal;
+using UnityEngine;
+
 
 namespace ScriptableObjectArchitecture.Editor
 {
     [CustomEditor(typeof(BaseCollection), true)]
     public class CollectionEditor : UnityEditor.Editor
     {
-        private BaseCollection Target { get { return (BaseCollection)target; } }
-        private SerializedProperty CollectionItemsProperty
-        {
-            get { return serializedObject.FindProperty(LIST_PROPERTY_NAME);}
-        }
-
         private ReorderableList _reorderableList;
+
+        private GUIContent _titleGUIContent;
+        private GUIContent _noPropertyDrawerWarningGUIContent;
 
         // UI
         private const bool DISABLE_ELEMENTS = false;
@@ -22,14 +20,15 @@ namespace ScriptableObjectArchitecture.Editor
         private const bool LIST_DISPLAY_ADD_BUTTON = true;
         private const bool LIST_DISPLAY_REMOVE_BUTTON = true;
 
-        private GUIContent _titleGUIContent;
-        private GUIContent _noPropertyDrawerWarningGUIContent;
-
         private const string TITLE_FORMAT = "List ({0})";
         private const string NO_PROPERTY_WARNING_FORMAT = "No PropertyDrawer for type [{0}]";
 
         // Property Names
         private const string LIST_PROPERTY_NAME = "_list";
+        private BaseCollection Target => (BaseCollection) target;
+
+        private SerializedProperty CollectionItemsProperty => serializedObject.FindProperty(LIST_PROPERTY_NAME);
+
 
         private void OnEnable()
         {
@@ -46,9 +45,11 @@ namespace ScriptableObjectArchitecture.Editor
             {
                 drawHeaderCallback = DrawHeader,
                 drawElementCallback = DrawElement,
-                elementHeightCallback = GetHeight,
+                elementHeightCallback = GetHeight
             };
         }
+
+
         public override void OnInspectorGUI()
         {
             EditorGUI.BeginChangeCheck();
@@ -60,14 +61,18 @@ namespace ScriptableObjectArchitecture.Editor
                 serializedObject.ApplyModifiedProperties();
             }
         }
+
+
         private void DrawHeader(Rect rect)
         {
             EditorGUI.LabelField(rect, _titleGUIContent);
         }
+
+
         private void DrawElement(Rect rect, int index, bool isActive, bool isFocused)
         {
             rect = SOArchitecture_EditorUtility.GetReorderableListElementFieldRect(rect);
-            SerializedProperty property = CollectionItemsProperty.GetArrayElementAtIndex(index);
+            var property = CollectionItemsProperty.GetArrayElementAtIndex(index);
 
             EditorGUI.BeginDisabledGroup(DISABLE_ELEMENTS);
 
@@ -75,9 +80,11 @@ namespace ScriptableObjectArchitecture.Editor
 
             EditorGUI.EndDisabledGroup();
         }
+
+
         private float GetHeight(int index)
         {
-            SerializedProperty property = CollectionItemsProperty.GetArrayElementAtIndex(index);
+            var property = CollectionItemsProperty.GetArrayElementAtIndex(index);
 
             return GenericPropertyDrawer.GetHeight(property, Target.Type) + EditorGUIUtility.standardVerticalSpacing;
         }

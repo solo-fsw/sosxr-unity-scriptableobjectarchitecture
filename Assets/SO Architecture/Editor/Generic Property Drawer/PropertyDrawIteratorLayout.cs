@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEditor;
 using UnityEngine;
-using UnityEditor;
+
 
 namespace ScriptableObjectArchitecture.Editor
 {
@@ -11,13 +10,16 @@ namespace ScriptableObjectArchitecture.Editor
         {
         }
 
+
         protected override void DrawPropertyWithLabel()
         {
             EditorGUILayout.PropertyField(iterator);
         }
+
+
         protected override void DrawProperty()
         {
             EditorGUILayout.PropertyField(iterator, GUIContent.none);
         }
-    } 
+    }
 }

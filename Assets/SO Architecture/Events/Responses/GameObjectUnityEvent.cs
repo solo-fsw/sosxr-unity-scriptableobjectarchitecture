@@ -1,10 +1,12 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
+
 namespace ScriptableObjectArchitecture
 {
-    [System.Serializable]
+    [Serializable]
     public sealed class GameObjectUnityEvent : UnityEvent<GameObject>
     {
-    } 
+    }
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 namespace ScriptableObjectArchitecture
 {
     [CreateAssetMenu(
@@ -8,6 +9,5 @@ namespace ScriptableObjectArchitecture
         order = 120)]
     public class SceneCollection : Collection<SceneInfo>
     {
-
     }
 }

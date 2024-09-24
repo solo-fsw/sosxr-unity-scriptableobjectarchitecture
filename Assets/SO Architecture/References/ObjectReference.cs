@@ -1,11 +1,19 @@
-﻿using UnityEngine;
+﻿using System;
+using Object = UnityEngine.Object;
+
 
 namespace ScriptableObjectArchitecture
 {
-    [System.Serializable]
+    [Serializable]
     public class ObjectReference : BaseReference<Object, ObjectVariable>
     {
-        public ObjectReference() : base() { }
-        public ObjectReference(Object value) : base(value) { }
-    } 
+        public ObjectReference()
+        {
+        }
+
+
+        public ObjectReference(Object value) : base(value)
+        {
+        }
+    }
 }

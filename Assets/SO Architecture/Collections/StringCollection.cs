@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 namespace ScriptableObjectArchitecture
 {
     [CreateAssetMenu(
@@ -8,5 +9,5 @@ namespace ScriptableObjectArchitecture
         order = SOArchitecture_Utility.ASSET_MENU_ORDER_COLLECTIONS + 2)]
     public class StringCollection : Collection<string>
     {
-    } 
+    }
 }
