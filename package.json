@@ -5,7 +5,6 @@
   "description": "Makes using Scriptable Objects as a fundamental part of your architecture in Unity super easy",
   "unity": "2019.2",
   "dependencies": {
-    
   },
   "keywords": [
     "scriptableobject",
