@@ -18,7 +18,6 @@ namespace ScriptableObjectArchitecture
         private TEvent _event = default;
         [SerializeField]
         private TResponse _response = default;
-
         [SerializeField]
         protected TType _debugValue = default;
         protected override ScriptableObject GameEvent => _event;
