@@ -3,22 +3,9 @@
 All notable changes to this project will be documented in this file.
 The changelog format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+For earlier versions, please refer to the [original CHANGELOG](https://github.com/DanielEverland/ScriptableObject-Architecture/releases)
 
-## [1.0.0] - 2024-09-13
 
-
-### Added
-
--
-
-### Fixed
-
--
-
+## [1.7.4] - 2025-01-31
 ### Changed
-
--
-
-### Removed
-
--
+- Changed regular folder 'Examples' as a separate thing: download them as samples through the 'Samples' button in the package manager

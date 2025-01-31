@@ -1,6 +1,6 @@
 {
   "name": "com.danieleverland.scriptableobjectarchitecture",
-  "version": "1.6.4",
+  "version": "1.7.4",
   "displayName": "ScriptableObject-Architecture",
   "description": "Makes using Scriptable Objects as a fundamental part of your architecture in Unity super easy",
   "unity": "2019.2",
@@ -10,6 +10,11 @@
     "scriptableobject",
     "architecture"
   ],
+    "samples": [ {
+    "displayName": "Samples",
+    "description": "Contains samples of this package",
+    "path": "Samples-/Samples"
+  } ],
   "author": {
     "name": "Daniel Everland"
   }
