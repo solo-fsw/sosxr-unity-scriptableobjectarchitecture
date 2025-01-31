@@ -5,6 +5,12 @@ The changelog format is based on [Keep a Changelog](https://keepachangelog.com/e
 
 For earlier versions, please refer to the [original CHANGELOG](https://github.com/DanielEverland/ScriptableObject-Architecture/releases)
 
+## [1.8.0] - 2025-01-31
+### Changed
+- Rider cleanup of code
+- Updated to URP support
+- Updated to Unity 'New' Input System
+
 
 ## [1.7.4] - 2025-01-31
 ### Changed
