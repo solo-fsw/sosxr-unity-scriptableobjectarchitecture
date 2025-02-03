@@ -1,6 +1,6 @@
 {
   "name": "com.danieleverland.scriptableobjectarchitecture",
-  "version": "1.8.0",
+  "version": "2.0.0",
   "displayName": "ScriptableObject-Architecture",
   "description": "Makes using Scriptable Objects as a fundamental part of your architecture in Unity super easy",
   "unity": "2019.2",

@@ -5,6 +5,13 @@ The changelog format is based on [Keep a Changelog](https://keepachangelog.com/e
 
 For earlier versions, please refer to the [original CHANGELOG](https://github.com/DanielEverland/ScriptableObject-Architecture/releases)
 
+
+## [2.0.0] - 2025-02-03
+### Changed
+- Added MIT license since none was present
+
+
+
 ## [1.8.0] - 2025-01-31
 ### Changed
 - Rider cleanup of code
