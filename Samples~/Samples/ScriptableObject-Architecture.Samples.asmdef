@@ -1,17 +1,17 @@
 {
-    "name": "ScriptableObject-Architecture.Samples",
-    "rootNamespace": "",
-    "references": [
-        "GUID:63ebd60d5c68886498ecfee04b5d6a12",
-        "GUID:75469ad4d38634e559750d17036d5f7c"
-    ],
-    "includePlatforms": [],
-    "excludePlatforms": [],
-    "allowUnsafeCode": false,
-    "overrideReferences": false,
-    "precompiledReferences": [],
-    "autoReferenced": true,
-    "defineConstraints": [],
-    "versionDefines": [],
-    "noEngineReferences": false
+  "name": "ScriptableObject-Architecture.Samples",
+  "rootNamespace": "",
+  "references": [
+    "GUID:63ebd60d5c68886498ecfee04b5d6a12",
+    "GUID:75469ad4d38634e559750d17036d5f7c"
+  ],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false,
+  "overrideReferences": false,
+  "precompiledReferences": [],
+  "autoReferenced": true,
+  "defineConstraints": [],
+  "versionDefines": [],
+  "noEngineReferences": false
 }
