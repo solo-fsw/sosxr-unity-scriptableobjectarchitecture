@@ -5,6 +5,10 @@ The changelog format is based on [Keep a Changelog](https://keepachangelog.com/e
 
 For earlier versions, please refer to the [original CHANGELOG](https://github.com/DanielEverland/ScriptableObject-Architecture/releases)
 
+## [2.1.0] - In progress
+### Added
+- SOSXRScriptableObject base class to inherit from because lifecycle method names were garbage
+
 
 ## [2.0.0] - 2025-02-03
 ### Changed
