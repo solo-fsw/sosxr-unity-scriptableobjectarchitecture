@@ -91,8 +91,8 @@ public abstract class SOSXRScriptableObject : ScriptableObject
     }
 }
 
+
 [CreateAssetMenu(menuName = "SOSXR/Test")]
 public class Test : SOSXRScriptableObject
 {
-    
 }

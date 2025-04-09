@@ -1,7 +1,11 @@
 ## Introduction
-References are how we expose fields in MonoBehaviour scripts that allow us to assign a variable ScriptableObject. They're wrapped in a separate class because you can also choose not to use a ScriptableObject at all, and instead write a constant value in the inspector.
+
+References are how we expose fields in MonoBehaviour scripts that allow us to assign a variable ScriptableObject.
+They're wrapped in a separate class because you can also choose not to use a ScriptableObject at all, and instead write
+a constant value in the inspector.
 
 ## Script Reference
+
 To create a Reference field in your MonoBehaviour script, simply declare it like you would any other field
 
 public BoolReference boolValue;
