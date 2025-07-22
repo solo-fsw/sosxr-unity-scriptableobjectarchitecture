@@ -60,11 +60,6 @@ namespace ScriptableObjectArchitecture
 
         public override bool Equals(object obj)
         {
-            if (obj == null)
-            {
-                return false;
-            }
-
             if (obj is StackTraceEntry)
             {
                 return Equals(obj as StackTraceEntry);
