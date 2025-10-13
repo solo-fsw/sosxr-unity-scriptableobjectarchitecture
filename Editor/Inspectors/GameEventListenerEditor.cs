@@ -2,7 +2,6 @@
 using UnityEditor;
 using UnityEngine;
 
-
 namespace ScriptableObjectArchitecture.Editor
 {
     [CustomEditor(typeof(BaseGameEventListener<,>), true)]

@@ -1,6 +1,5 @@
 ﻿using UnityEditor;
 
-
 namespace ScriptableObjectArchitecture.Editor
 {
     public class PropertyIterator : IPropertyIterator

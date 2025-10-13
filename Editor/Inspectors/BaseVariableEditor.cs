@@ -2,7 +2,6 @@
 using UnityEditor.AnimatedValues;
 using UnityEngine;
 
-
 namespace ScriptableObjectArchitecture.Editor
 {
     [CustomEditor(typeof(BaseVariable<>), true)]
@@ -22,7 +21,7 @@ namespace ScriptableObjectArchitecture.Editor
         private AnimBool _isClampedVariableAnimation;
 
         private const string READONLY_TOOLTIP = "Should this value be changable during runtime? Will still be editable in the inspector regardless";
-        private BaseVariable Target => (BaseVariable) target;
+        private BaseVariable Target => (BaseVariable)target;
         protected bool IsClampable => Target.Clampable;
         protected bool IsClamped => Target.IsClamped;
 

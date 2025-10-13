@@ -12,14 +12,10 @@ namespace ScriptableObjectArchitecture
         where TEvent : GameEventBase<TType>
         where TResponse : UnityEvent<TType>
     {
-        [SerializeField]
-        private TEvent _previouslyRegisteredEvent = default;
-        [SerializeField]
-        private TEvent _event = default;
-        [SerializeField]
-        private TResponse _response = default;
-        [SerializeField]
-        protected TType _debugValue = default;
+        [SerializeField] private TEvent _previouslyRegisteredEvent;
+        [SerializeField] private TEvent _event;
+        [SerializeField] private TResponse _response;
+        [SerializeField] protected TType _debugValue;
         protected override ScriptableObject GameEvent => _event;
         protected override UnityEventBase Response => _response;
 
@@ -75,12 +71,9 @@ namespace ScriptableObjectArchitecture
         where TEvent : GameEventBase
         where TResponse : UnityEvent
     {
-        [SerializeField]
-        private TEvent _previouslyRegisteredEvent = default;
-        [SerializeField]
-        private TEvent _event = default;
-        [SerializeField]
-        private TResponse _response = default;
+        [SerializeField] private TEvent _previouslyRegisteredEvent;
+        [SerializeField] private TEvent _event;
+        [SerializeField] private TResponse _response;
         protected override ScriptableObject GameEvent => _event;
         protected override UnityEventBase Response => _response;
 
@@ -134,14 +127,11 @@ namespace ScriptableObjectArchitecture
 
     public abstract class DebuggableGameEventListener : SOArchitectureBaseMonobehaviour, IStackTraceObject
     {
-        #pragma warning disable 0414
-        [SerializeField]
-        private bool _showDebugFields = false;
-        [SerializeField]
-        private bool _enableGizmoDebugging = true;
-        [SerializeField]
-        private Color _debugColor = Color.cyan;
-        #pragma warning restore
+#pragma warning disable 0414
+        [SerializeField] private bool _showDebugFields;
+        [SerializeField] private bool _enableGizmoDebugging = true;
+        [SerializeField] private Color _debugColor = Color.cyan;
+#pragma warning restore
 
         public List<StackTraceEntry> StackTraces { get; } = new();
 
@@ -151,23 +141,23 @@ namespace ScriptableObjectArchitecture
 
         public void AddStackTrace(object obj)
         {
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             StackTraces.Insert(0, StackTraceEntry.Create(obj));
-            #endif
+#endif
         }
 
 
         public void AddStackTrace()
         {
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             StackTraces.Insert(0, StackTraceEntry.Create());
-            #endif
+#endif
         }
 
 
         protected void CreateDebugEntry(UnityEventBase response)
         {
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             for (var i = 0; i < response.GetPersistentEventCount(); i++)
             {
                 var gameObjectTarget = GetGameObject(response.GetPersistentTarget(i));
@@ -188,11 +178,11 @@ namespace ScriptableObjectArchitecture
 
                 _debugEntries.Add(new DebugEvent(gameObjectTarget, functionName));
             }
-            #endif
+#endif
         }
 
 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         private const float DOTTED_LINE_LENGTH = 5;
         private const float DOT_LENGTH = 0.5f;
         private const float DOT_WIDTH = 3;
@@ -366,6 +356,6 @@ namespace ScriptableObjectArchitecture
                 Offset = 0;
             }
         }
-        #endif
+#endif
     }
 }

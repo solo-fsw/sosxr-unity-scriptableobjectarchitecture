@@ -26,6 +26,7 @@ namespace ScriptableObjectArchitecture.Editor
         // Warnings
         private const string COULD_NOT_FIND_VALUE_FIELD_WARNING_FORMAT =
             "Could not find FieldInfo for [{0}] specific property drawer on type [{1}].";
+
         /// <summary>
         ///     Options to display in the popup to select constant or variable.
         /// </summary>

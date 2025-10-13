@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 
-
 namespace ScriptableObjectArchitecture
 {
     public interface IStackTraceObject

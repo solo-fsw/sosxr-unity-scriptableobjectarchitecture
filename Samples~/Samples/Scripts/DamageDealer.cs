@@ -1,12 +1,10 @@
 ﻿using UnityEngine;
 
-
 namespace ScriptableObjectArchitecture.Examples
 {
     public class DamageDealer : MonoBehaviour
     {
-        [SerializeField]
-        private FloatReference _damageAmount = default;
+        [SerializeField] private FloatReference _damageAmount;
 
 
         private void OnTriggerEnter(Collider other)

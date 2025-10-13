@@ -2,7 +2,6 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-
 namespace ScriptableObjectArchitecture
 {
     public abstract class BaseVariable : GameEventBase
@@ -19,22 +18,14 @@ namespace ScriptableObjectArchitecture
 
     public abstract class BaseVariable<T> : BaseVariable
     {
-        [SerializeField]
-        protected T _value = default;
-        [SerializeField]
-        private bool _readOnly = false;
-        [SerializeField]
-        private bool _useDefaultValue = false;
-        [SerializeField]
-        private bool _raiseWarning = true;
-        [SerializeField]
-        protected bool _isClamped = false;
-        [SerializeField]
-        protected T _minClampedValue = default;
-        [SerializeField]
-        protected T _maxClampedValue = default;
-        [SerializeField]
-        protected T _defaultValue;
+        [SerializeField] protected T _value;
+        [SerializeField] private bool _readOnly;
+        [SerializeField] private bool _useDefaultValue;
+        [SerializeField] private bool _raiseWarning = true;
+        [SerializeField] protected bool _isClamped;
+        [SerializeField] protected T _minClampedValue;
+        [SerializeField] protected T _maxClampedValue;
+        [SerializeField] protected T _defaultValue;
 
         private T _oldValue;
 
@@ -86,7 +77,7 @@ namespace ScriptableObjectArchitecture
         public override object BaseValue
         {
             get => _value;
-            set => SetValue((T) value);
+            set => SetValue((T)value);
         }
 
 
@@ -189,8 +180,7 @@ namespace ScriptableObjectArchitecture
 
     public abstract class BaseVariable<T, TEvent> : BaseVariable<T> where TEvent : UnityEvent<T>
     {
-        [SerializeField]
-        private TEvent _event = default;
+        [SerializeField] private TEvent _event;
 
 
         public override void Raise()

@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 
-
 namespace ScriptableObjectArchitecture
 {
     [Serializable]

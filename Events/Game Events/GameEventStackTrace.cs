@@ -11,7 +11,7 @@ namespace ScriptableObjectArchitecture
         private readonly int _frameCount;
         private readonly string _stackTrace;
         private readonly object _value;
-        private readonly bool _constructedWithValue = false;
+        private readonly bool _constructedWithValue;
 
 
         private StackTraceEntry(string trace)

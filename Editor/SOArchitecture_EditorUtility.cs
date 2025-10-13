@@ -21,6 +21,7 @@ namespace ScriptableObjectArchitecture.Editor
         ///     A debug <see cref="GUIStyle" /> that allows for identification of EditorGUI Rect issues.
         /// </summary>
         public static GUIStyle DebugStyle { get; private set; }
+
         private const float DebugStyleBackgroundAlpha = 0.33f;
 
         private static PropertyDrawerGraph _propertyDrawerGraph;
@@ -223,8 +224,8 @@ namespace ScriptableObjectArchitecture.Editor
                         {
                             var drawerData = attribute as CustomPropertyDrawer;
 
-                            var useForChildren = (bool) typeof(CustomPropertyDrawer).GetField("m_UseForChildren", _fieldBindingsFlag).GetValue(drawerData);
-                            var targetType = (Type) typeof(CustomPropertyDrawer).GetField("m_Type", _fieldBindingsFlag).GetValue(drawerData);
+                            var useForChildren = (bool)typeof(CustomPropertyDrawer).GetField("m_UseForChildren", _fieldBindingsFlag).GetValue(drawerData);
+                            var targetType = (Type)typeof(CustomPropertyDrawer).GetField("m_Type", _fieldBindingsFlag).GetValue(drawerData);
 
                             if (useForChildren)
                             {

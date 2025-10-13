@@ -1,7 +1,6 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-
 namespace ScriptableObjectArchitecture.Editor
 {
     public abstract class BaseGameEventListenerEditor : UnityEditor.Editor
@@ -12,7 +11,7 @@ namespace ScriptableObjectArchitecture.Editor
         private SerializedProperty _response;
         private SerializedProperty _enableDebug;
         private SerializedProperty _showDebugFields;
-        private IStackTraceObject Target => (IStackTraceObject) target;
+        private IStackTraceObject Target => (IStackTraceObject)target;
 
 
         protected abstract void DrawRaiseButton();

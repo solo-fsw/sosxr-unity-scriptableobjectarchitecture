@@ -3,7 +3,6 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 
-
 namespace ScriptableObjectArchitecture.Editor
 {
     public static class SO_CodeGenerator
@@ -39,9 +38,9 @@ namespace ScriptableObjectArchitecture.Editor
             "{0}Variable.cs"
         };
 
-        private static string[] _targetDirectories = null;
+        private static string[] _targetDirectories;
         private static readonly string[] _templatePaths = new string[TYPE_COUNT];
-        private static string[,] _replacementStrings = null;
+        private static string[,] _replacementStrings;
 
 
         private static void CreateTargetDirectories()
@@ -104,11 +103,11 @@ namespace ScriptableObjectArchitecture.Editor
         {
             _replacementStrings = new string[5, 2]
             {
-                {"$TYPE$", data.TypeName},
-                {"$TYPE_NAME$", CapitalizeFirstLetter(data.TypeName)},
-                {"$MENU_NAME$", data.MenuName},
-                {"$ORDER$", data.Order.ToString()},
-                {"$NAMESPACE$", data.Namespace}
+                { "$TYPE$", data.TypeName },
+                { "$TYPE_NAME$", CapitalizeFirstLetter(data.TypeName) },
+                { "$MENU_NAME$", data.MenuName },
+                { "$ORDER$", data.Order.ToString() },
+                { "$NAMESPACE$", data.Namespace }
             };
 
             for (var i = 0; i < TYPE_COUNT; i++)

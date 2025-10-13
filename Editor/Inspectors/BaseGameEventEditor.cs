@@ -1,12 +1,11 @@
 ﻿using UnityEditor;
 
-
 namespace ScriptableObjectArchitecture.Editor
 {
     public abstract class BaseGameEventEditor : UnityEditor.Editor
     {
         private StackTrace _stackTrace;
-        private IStackTraceObject Target => (IStackTraceObject) target;
+        private IStackTraceObject Target => (IStackTraceObject)target;
 
 
         protected abstract void DrawRaiseButton();

@@ -8,14 +8,12 @@ namespace ScriptableObjectArchitecture
 {
     public class SOArchitecture_Settings : ScriptableObject
     {
-        [SerializeField]
-        private string _codeGenerationTargetDirectory = "CODE_GENERATION";
+        [SerializeField] private string _codeGenerationTargetDirectory = "CODE_GENERATION";
 
         [SerializeField] [Tooltip("Allow newly generated code files to overwrite existing ones")]
-        private bool _codeGenerationAllowOverwrite = false;
+        private bool _codeGenerationAllowOverwrite;
 
-        [SerializeField]
-        private int _defualtCreateAssetMenuOrder = 120;
+        [SerializeField] private int _defualtCreateAssetMenuOrder = 120;
 
         public string CodeGenerationTargetDirectory
         {
@@ -55,7 +53,7 @@ namespace ScriptableObjectArchitecture
 
         private static SOArchitecture_Settings GetInstance()
         {
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             var instance = FindInstanceInProject();
 
             if (instance == null)
@@ -64,15 +62,15 @@ namespace ScriptableObjectArchitecture
             }
 
             return instance;
-            #else
+#else
             return null;
-            #endif
+#endif
         }
 
 
         private static SOArchitecture_Settings FindInstanceInProject()
         {
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             var settingsGUIDs = AssetDatabase.FindAssets(AssetDatabaseSearchString);
 
             if (settingsGUIDs.Length == 0)
@@ -91,15 +89,15 @@ namespace ScriptableObjectArchitecture
             var settingsPath = AssetDatabase.GUIDToAssetPath(settingsGUIDs[0]);
 
             return AssetDatabase.LoadAssetAtPath<SOArchitecture_Settings>(settingsPath);
-            #else
+#else
             throw new System.NullReferenceException();
-            #endif
+#endif
         }
 
 
         private static SOArchitecture_Settings CreateInstance()
         {
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             var newSettings = CreateInstance<SOArchitecture_Settings>();
 
             AssetDatabase.CreateAsset(newSettings, DefaultNewSettingsLocation + DefaultNewSettingsName);
@@ -111,9 +109,9 @@ namespace ScriptableObjectArchitecture
                              "Created new one at asset root, feel free to move it wherever you please in your project.", newSettings);
 
             return newSettings;
-            #else
+#else
         throw new System.NullReferenceException();
-            #endif
+#endif
         }
 
 

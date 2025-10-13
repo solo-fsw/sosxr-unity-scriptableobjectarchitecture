@@ -1,12 +1,10 @@
 ﻿using UnityEngine;
 
-
 namespace ScriptableObjectArchitecture.Examples
 {
     public class ObjectAdder : MonoBehaviour
     {
-        [SerializeField]
-        private GameObjectCollection _targetCollection = default;
+        [SerializeField] private GameObjectCollection _targetCollection;
 
 
         private void OnEnable()

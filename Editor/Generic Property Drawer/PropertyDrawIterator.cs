@@ -1,7 +1,6 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-
 namespace ScriptableObjectArchitecture.Editor
 {
     public class PropertyDrawIterator : BasePropertyDrawIterator

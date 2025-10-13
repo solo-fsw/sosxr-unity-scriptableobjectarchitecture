@@ -1,12 +1,10 @@
 ﻿using UnityEngine;
 
-
 namespace ScriptableObjectArchitecture.Examples
 {
     public class Disabler : MonoBehaviour
     {
-        [SerializeField]
-        private GameObjectCollection _targetSet = default;
+        [SerializeField] private GameObjectCollection _targetSet;
 
 
         public void DisableRandom()

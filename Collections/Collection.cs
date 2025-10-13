@@ -3,13 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 namespace ScriptableObjectArchitecture
 {
     public class Collection<T> : BaseCollection, IEnumerable<T>
     {
-        [SerializeField]
-        private List<T> _list = new();
+        [SerializeField] private List<T> _list = new();
 
         public new T this[int index]
         {

@@ -1,18 +1,14 @@
 ﻿using System;
 using UnityEngine;
 
-
 namespace ScriptableObjectArchitecture
 {
     [Serializable]
     public class BaseReference<TBase, TVariable> : BaseReference where TVariable : BaseVariable<TBase>
     {
-        [SerializeField]
-        protected bool _useConstant = false;
-        [SerializeField]
-        protected TBase _constantValue = default;
-        [SerializeField]
-        protected TVariable _variable = default;
+        [SerializeField] protected bool _useConstant;
+        [SerializeField] protected TBase _constantValue;
+        [SerializeField] protected TVariable _variable;
 
 
         public BaseReference()
@@ -59,7 +55,7 @@ namespace ScriptableObjectArchitecture
 
         public BaseReference CreateCopy()
         {
-            var copy = (BaseReference<TBase, TVariable>) Activator.CreateInstance(GetType());
+            var copy = (BaseReference<TBase, TVariable>)Activator.CreateInstance(GetType());
             copy._useConstant = _useConstant;
             copy._constantValue = _constantValue;
             copy._variable = _variable;

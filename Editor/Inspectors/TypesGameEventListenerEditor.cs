@@ -2,7 +2,6 @@
 using UnityEditor;
 using UnityEngine;
 
-
 namespace ScriptableObjectArchitecture.Editor
 {
     [CustomEditor(typeof(BaseGameEventListener<,,>), true)]
@@ -43,7 +42,7 @@ namespace ScriptableObjectArchitecture.Editor
 
         private void CallMethod(object value)
         {
-            _raiseMethod.Invoke(target, new object[1] {value});
+            _raiseMethod.Invoke(target, new object[1] { value });
         }
     }
 }

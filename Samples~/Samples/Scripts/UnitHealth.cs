@@ -1,16 +1,13 @@
 ﻿using UnityEngine;
 
-
 namespace ScriptableObjectArchitecture.Examples
 {
     public class UnitHealth : MonoBehaviour
     {
         public FloatReference Health;
 
-        [SerializeField]
-        private bool _resetOnStartup = true;
-        [SerializeField]
-        private FloatReference _startingHealth = default;
+        [SerializeField] private bool _resetOnStartup = true;
+        [SerializeField] private FloatReference _startingHealth;
 
 
         private void Start()

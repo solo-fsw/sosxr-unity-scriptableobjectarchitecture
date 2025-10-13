@@ -3,7 +3,6 @@
 using UnityEditor;
 using UnityEngine;
 
-
 namespace ScriptableObjectArchitecture
 {
     /// <summary>
@@ -37,14 +36,17 @@ namespace ScriptableObjectArchitecture
         private const string PROJECT_REFERENCES_HEADER = "Project Preferences";
 
         private const string CODE_GEN_DIRECTORY_LABEL = "Code Generation Output Directory";
+
         private const string CODE_GEN_DIRECTORY_DESCRIPTION
             = "The directory where the output of code generation will write to.";
 
         private const string ALLOW_OVERWRITE_LABEL = "Allow Code Generation to Overwrite";
+
         private const string ALLOW_OVERWRITE_DESCRIPTION =
             "Allow newly generated code files to overwrite existing ones.";
 
         private const string ASSET_MENU_ORDER_LABEL = "Create Asset Menu Order";
+
         private const string ASSET_MENU_ORDER_DESCRIPTION =
             "This determines the order in which the CreateAsset Context Menu will be placed into.";
 
@@ -57,14 +59,14 @@ namespace ScriptableObjectArchitecture
 
         private static readonly GUILayoutOption MAX_WIDTH;
 
-        #if UNITY_2018_3_OR_NEWER
+#if UNITY_2018_3_OR_NEWER
         // Searchable Fields
         private static readonly string[] KEYWORDS =
         {
             "Scriptable",
             "Architecture"
         };
-        #endif
+#endif
         private static void DrawAllGUI()
         {
             DrawProjectGUI();
@@ -166,7 +168,7 @@ namespace ScriptableObjectArchitecture
         }
 
 
-        #if UNITY_2018_3_OR_NEWER
+#if UNITY_2018_3_OR_NEWER
         [SettingsProvider]
         private static SettingsProvider CreateProjectPreferenceSettingsProvider()
         {
@@ -187,7 +189,7 @@ namespace ScriptableObjectArchitecture
                 keywords = KEYWORDS
             };
         }
-        #endif
+#endif
     }
 }
 
