@@ -224,8 +224,8 @@ namespace ScriptableObjectArchitecture.Editor
                         {
                             var drawerData = attribute as CustomPropertyDrawer;
 
-                            var useForChildren = (bool)typeof(CustomPropertyDrawer).GetField("m_UseForChildren", _fieldBindingsFlag).GetValue(drawerData);
-                            var targetType = (Type)typeof(CustomPropertyDrawer).GetField("m_Type", _fieldBindingsFlag).GetValue(drawerData);
+                            var useForChildren = (bool) typeof(CustomPropertyDrawer).GetField("m_UseForChildren", _fieldBindingsFlag).GetValue(drawerData);
+                            var targetType = (Type) typeof(CustomPropertyDrawer).GetField("m_Type", _fieldBindingsFlag).GetValue(drawerData);
 
                             if (useForChildren)
                             {

@@ -3,6 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
+
 namespace ScriptableObjectArchitecture
 {
     [Serializable]
@@ -71,11 +72,11 @@ namespace ScriptableObjectArchitecture
             internal set => _isSceneEnabled = value;
         }
 
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
         internal SceneAsset Scene => AssetDatabase.LoadAssetAtPath<SceneAsset>(_sceneName);
-#endif
+        #endif
 
-#pragma warning disable 0649
+        #pragma warning disable 0649
 
         [SerializeField] private string _sceneName;
 
@@ -83,13 +84,13 @@ namespace ScriptableObjectArchitecture
 
         [SerializeField] private bool _isSceneEnabled;
 
-#pragma warning restore 0649
+        #pragma warning restore 0649
 
         #region ISerializationCallbackReceiver
 
         public void OnBeforeSerialize()
         {
-#if UNITY_EDITOR
+            #if UNITY_EDITOR
             if (Scene != null)
             {
                 var sceneAssetPath = AssetDatabase.GetAssetPath(Scene);
@@ -109,7 +110,7 @@ namespace ScriptableObjectArchitecture
                     }
                 }
             }
-#endif
+            #endif
         }
 
 

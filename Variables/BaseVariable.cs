@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+
 namespace ScriptableObjectArchitecture
 {
     public abstract class BaseVariable : GameEventBase
@@ -77,7 +78,7 @@ namespace ScriptableObjectArchitecture
         public override object BaseValue
         {
             get => _value;
-            set => SetValue((T)value);
+            set => SetValue((T) value);
         }
 
 

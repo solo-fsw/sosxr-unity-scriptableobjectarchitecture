@@ -1,6 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
+
 namespace ScriptableObjectArchitecture.Editor
 {
     [CustomPropertyDrawer(typeof(Quaternion))]

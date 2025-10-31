@@ -2,6 +2,7 @@
 using UnityEditorInternal;
 using UnityEngine;
 
+
 namespace ScriptableObjectArchitecture.Editor
 {
     [CustomEditor(typeof(BaseCollection), true)]
@@ -24,7 +25,7 @@ namespace ScriptableObjectArchitecture.Editor
 
         // Property Names
         private const string LIST_PROPERTY_NAME = "_list";
-        private BaseCollection Target => (BaseCollection)target;
+        private BaseCollection Target => (BaseCollection) target;
 
         private SerializedProperty CollectionItemsProperty => serializedObject.FindProperty(LIST_PROPERTY_NAME);
 

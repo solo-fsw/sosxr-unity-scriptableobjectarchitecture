@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 namespace ScriptableObjectArchitecture
 {
     public class Collection<T> : BaseCollection, IEnumerable<T>

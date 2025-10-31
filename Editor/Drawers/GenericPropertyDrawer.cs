@@ -2,6 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
+
 namespace ScriptableObjectArchitecture.Editor
 {
     public static class GenericPropertyDrawer
@@ -89,8 +90,7 @@ namespace ScriptableObjectArchitecture.Editor
             do
             {
                 iter.Draw();
-            }
-            while (iter.Next());
+            } while (iter.Next());
 
             iter.End();
         }
@@ -112,8 +112,7 @@ namespace ScriptableObjectArchitecture.Editor
             do
             {
                 ++elements;
-            }
-            while (iter.Next());
+            } while (iter.Next());
 
             iter.End();
 

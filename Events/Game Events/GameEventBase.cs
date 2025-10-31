@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 namespace ScriptableObjectArchitecture
 {
     public abstract class GameEventBase<T> : GameEventBase, IGameEvent<T>, IStackTraceObject
@@ -132,23 +133,23 @@ namespace ScriptableObjectArchitecture
 
         public void AddStackTrace()
         {
-#if UNITY_EDITOR
+            #if UNITY_EDITOR
             if (SOArchitecturePreferences.IsDebugEnabled)
             {
                 StackTraces.Insert(0, StackTraceEntry.Create());
             }
-#endif
+            #endif
         }
 
 
         public void AddStackTrace(object value)
         {
-#if UNITY_EDITOR
+            #if UNITY_EDITOR
             if (SOArchitecturePreferences.IsDebugEnabled)
             {
                 StackTraces.Insert(0, StackTraceEntry.Create(value));
             }
-#endif
+            #endif
         }
 
 

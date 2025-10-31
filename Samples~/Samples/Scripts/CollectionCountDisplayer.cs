@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
+
 namespace ScriptableObjectArchitecture.Examples
 {
     public class CollectionCountDisplayer : MonoBehaviour

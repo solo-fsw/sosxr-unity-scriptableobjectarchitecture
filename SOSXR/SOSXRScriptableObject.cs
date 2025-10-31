@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 /// <summary>
 ///     The names for the ScriptableObject lifecycle methods are terrible, since they are the same as MonoBehaviour, but
 ///     are called at different times.

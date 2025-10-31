@@ -62,7 +62,7 @@ namespace ScriptableObjectArchitecture.Editor
 
         private void CallMethod(object value)
         {
-            _raiseMethod.Invoke(target, new object[1] { value });
+            _raiseMethod.Invoke(target, new object[1] {value});
         }
     }
 }

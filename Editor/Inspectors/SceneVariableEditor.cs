@@ -1,5 +1,6 @@
 ﻿using UnityEditor;
 
+
 namespace ScriptableObjectArchitecture.Editor
 {
     [CustomEditor(typeof(SceneVariable))]
@@ -29,7 +30,7 @@ namespace ScriptableObjectArchitecture.Editor
 
         protected override void DrawValue()
         {
-            var sceneVariable = (SceneVariable)target;
+            var sceneVariable = (SceneVariable) target;
             var sceneInfoProperty = serializedObject.FindProperty(SCENE_INFO_PROPERTY);
 
             if (sceneVariable.Value.Scene == null)

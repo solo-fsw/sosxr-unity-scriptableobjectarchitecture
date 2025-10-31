@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+
 namespace ScriptableObjectArchitecture.Examples
 {
     public class ObjectAdder : MonoBehaviour

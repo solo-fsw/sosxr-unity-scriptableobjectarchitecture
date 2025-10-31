@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
+
 namespace ScriptableObjectArchitecture
 {
     [Serializable]
@@ -55,7 +56,7 @@ namespace ScriptableObjectArchitecture
 
         public BaseReference CreateCopy()
         {
-            var copy = (BaseReference<TBase, TVariable>)Activator.CreateInstance(GetType());
+            var copy = (BaseReference<TBase, TVariable>) Activator.CreateInstance(GetType());
             copy._useConstant = _useConstant;
             copy._constantValue = _constantValue;
             copy._variable = _variable;

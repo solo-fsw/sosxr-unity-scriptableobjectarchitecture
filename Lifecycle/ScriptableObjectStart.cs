@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+
 public class ScriptableObjectStart : MonoBehaviour
 {
     private IEnumerable<ISOStart> _sos;

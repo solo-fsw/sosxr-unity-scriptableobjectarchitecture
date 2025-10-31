@@ -5,6 +5,7 @@ using UnityEditor.AnimatedValues;
 using UnityEngine;
 using UnityEngine.Events;
 
+
 namespace ScriptableObjectArchitecture.Editor
 {
     public class StackTrace

@@ -3,6 +3,7 @@
 using UnityEditor;
 using UnityEngine;
 
+
 namespace ScriptableObjectArchitecture
 {
     /// <summary>
@@ -59,14 +60,14 @@ namespace ScriptableObjectArchitecture
 
         private static readonly GUILayoutOption MAX_WIDTH;
 
-#if UNITY_2018_3_OR_NEWER
+        #if UNITY_2018_3_OR_NEWER
         // Searchable Fields
         private static readonly string[] KEYWORDS =
         {
             "Scriptable",
             "Architecture"
         };
-#endif
+        #endif
         private static void DrawAllGUI()
         {
             DrawProjectGUI();
@@ -168,7 +169,7 @@ namespace ScriptableObjectArchitecture
         }
 
 
-#if UNITY_2018_3_OR_NEWER
+        #if UNITY_2018_3_OR_NEWER
         [SettingsProvider]
         private static SettingsProvider CreateProjectPreferenceSettingsProvider()
         {
@@ -189,7 +190,7 @@ namespace ScriptableObjectArchitecture
                 keywords = KEYWORDS
             };
         }
-#endif
+        #endif
     }
 }
 

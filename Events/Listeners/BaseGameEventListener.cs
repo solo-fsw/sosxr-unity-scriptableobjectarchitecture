@@ -127,11 +127,11 @@ namespace ScriptableObjectArchitecture
 
     public abstract class DebuggableGameEventListener : SOArchitectureBaseMonobehaviour, IStackTraceObject
     {
-#pragma warning disable 0414
+        #pragma warning disable 0414
         [SerializeField] private bool _showDebugFields;
         [SerializeField] private bool _enableGizmoDebugging = true;
         [SerializeField] private Color _debugColor = Color.cyan;
-#pragma warning restore
+        #pragma warning restore
 
         public List<StackTraceEntry> StackTraces { get; } = new();
 
@@ -141,23 +141,23 @@ namespace ScriptableObjectArchitecture
 
         public void AddStackTrace(object obj)
         {
-#if UNITY_EDITOR
+            #if UNITY_EDITOR
             StackTraces.Insert(0, StackTraceEntry.Create(obj));
-#endif
+            #endif
         }
 
 
         public void AddStackTrace()
         {
-#if UNITY_EDITOR
+            #if UNITY_EDITOR
             StackTraces.Insert(0, StackTraceEntry.Create());
-#endif
+            #endif
         }
 
 
         protected void CreateDebugEntry(UnityEventBase response)
         {
-#if UNITY_EDITOR
+            #if UNITY_EDITOR
             for (var i = 0; i < response.GetPersistentEventCount(); i++)
             {
                 var gameObjectTarget = GetGameObject(response.GetPersistentTarget(i));
@@ -178,11 +178,11 @@ namespace ScriptableObjectArchitecture
 
                 _debugEntries.Add(new DebugEvent(gameObjectTarget, functionName));
             }
-#endif
+            #endif
         }
 
 
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
         private const float DOTTED_LINE_LENGTH = 5;
         private const float DOT_LENGTH = 0.5f;
         private const float DOT_WIDTH = 3;
@@ -356,6 +356,6 @@ namespace ScriptableObjectArchitecture
                 Offset = 0;
             }
         }
-#endif
+        #endif
     }
 }

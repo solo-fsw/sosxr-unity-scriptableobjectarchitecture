@@ -15,21 +15,21 @@ namespace ScriptableObjectArchitecture.Examples
 
         private void Awake()
         {
-#if ENABLE_INPUT_SYSTEM
+            #if ENABLE_INPUT_SYSTEM
             Debug.Log("Using new input system");
-#else
+            #else
             Debug.Log("Using old input system");
-#endif
+            #endif
         }
 
 
         private void Update()
         {
-#if ENABLE_INPUT_SYSTEM
+            #if ENABLE_INPUT_SYSTEM
             UseNewInputSystem();
-#else
+            #else
             UseOldInputSystem();
-#endif
+            #endif
         }
 
 

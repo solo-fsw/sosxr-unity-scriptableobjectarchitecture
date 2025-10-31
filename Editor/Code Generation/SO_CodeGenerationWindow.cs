@@ -2,6 +2,7 @@
 using UnityEditor.AnimatedValues;
 using UnityEngine;
 
+
 namespace ScriptableObjectArchitecture.Editor
 {
     public class SO_CodeGenerationWindow : EditorWindow
@@ -25,12 +26,12 @@ namespace ScriptableObjectArchitecture.Editor
 
         private readonly bool[,] _dependencyGraph = new bool[SO_CodeGenerator.TYPE_COUNT, SO_CodeGenerator.TYPE_COUNT]
         {
-            { false, true, false, false, true, false },
-            { false, false, true, false, false, false },
-            { false, false, false, false, false, true },
-            { false, false, false, false, false, false },
-            { false, false, false, false, false, false },
-            { false, false, false, false, false, false }
+            {false, true, false, false, true, false},
+            {false, false, true, false, false, false},
+            {false, false, false, false, false, true},
+            {false, false, false, false, false, false},
+            {false, false, false, false, false, false},
+            {false, false, false, false, false, false}
         };
 
         private readonly bool[] _states = new bool[SO_CodeGenerator.TYPE_COUNT];

@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 
+
 namespace ScriptableObjectArchitecture.Editor
 {
     public static class SO_CodeGenerator
@@ -103,11 +104,11 @@ namespace ScriptableObjectArchitecture.Editor
         {
             _replacementStrings = new string[5, 2]
             {
-                { "$TYPE$", data.TypeName },
-                { "$TYPE_NAME$", CapitalizeFirstLetter(data.TypeName) },
-                { "$MENU_NAME$", data.MenuName },
-                { "$ORDER$", data.Order.ToString() },
-                { "$NAMESPACE$", data.Namespace }
+                {"$TYPE$", data.TypeName},
+                {"$TYPE_NAME$", CapitalizeFirstLetter(data.TypeName)},
+                {"$MENU_NAME$", data.MenuName},
+                {"$ORDER$", data.Order.ToString()},
+                {"$NAMESPACE$", data.Namespace}
             };
 
             for (var i = 0; i < TYPE_COUNT; i++)
