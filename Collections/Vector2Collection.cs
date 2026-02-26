@@ -7,6 +7,7 @@ namespace ScriptableObjectArchitecture
         fileName = "Vector2Collection.asset",
         menuName = SOArchitecture_Utility.COLLECTION_SUBMENU + "Structs/Vector2",
         order = SOArchitecture_Utility.ASSET_MENU_ORDER_COLLECTIONS + 10)]
+    /// <summary>ScriptableObject collection of <see cref="UnityEngine.Vector2"/> items.</summary>
     public class Vector2Collection : Collection<Vector2>
     {
     }

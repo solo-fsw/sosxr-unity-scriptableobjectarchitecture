@@ -5,6 +5,11 @@ using UnityEngine;
 
 namespace ScriptableObjectArchitecture.Editor
 {
+    /// <summary>
+    ///     Static editor helper that draws a <see cref="UnityEditor.SerializedProperty"/> using Unity's built-in
+    ///     <see cref="UnityEditor.PropertyDrawer"/> when one is registered, or an iterating fallback for compound types.
+    ///     Also exposes height-calculation utilities consumed by other property drawers.
+    /// </summary>
     public static class GenericPropertyDrawer
     {
         private const string DefaultErrorLabelText = "Type is not drawable! Please implement property drawer";

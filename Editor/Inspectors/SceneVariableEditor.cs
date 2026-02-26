@@ -3,6 +3,7 @@
 
 namespace ScriptableObjectArchitecture.Editor
 {
+    /// <summary>Custom Inspector for <see cref="SceneVariable"/> assets; validates the assigned scene against build settings and renders contextual HelpBox warnings when the scene is missing or disabled.</summary>
     [CustomEditor(typeof(SceneVariable))]
     internal sealed class SceneVariableEditor : BaseVariableEditor
     {

@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 
 
 namespace ScriptableObjectArchitecture
 {
+    /// <summary>A <see cref="BaseReference{TBase,TVariable}"/> for <see cref="byte"/> values.</summary>
     [Serializable]
     public sealed class ByteReference : BaseReference<byte, ByteVariable>
     {

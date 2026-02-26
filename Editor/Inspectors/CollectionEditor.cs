@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace ScriptableObjectArchitecture.Editor
 {
+    /// <summary>Custom Inspector for <see cref="BaseCollection"/> ScriptableObject assets; presents the typed item list as a reorderable list with per-element property drawers.</summary>
     [CustomEditor(typeof(BaseCollection), true)]
     public class CollectionEditor : UnityEditor.Editor
     {

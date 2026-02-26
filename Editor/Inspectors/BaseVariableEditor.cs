@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace ScriptableObjectArchitecture.Editor
 {
+    /// <summary>Base custom Inspector for <see cref="BaseVariable{TValue}"/> ScriptableObject assets; renders the value field, optional default-value override, clamping controls, and the read-only toggle.</summary>
     [CustomEditor(typeof(BaseVariable<>), true)]
     public class BaseVariableEditor : UnityEditor.Editor
     {
@@ -130,6 +131,7 @@ namespace ScriptableObjectArchitecture.Editor
     }
 
 
+    /// <summary>Extends <see cref="BaseVariableEditor"/> to also render the on-change <see cref="UnityEngine.Events.UnityEvent"/> field.</summary>
     [CustomEditor(typeof(BaseVariable<,>), true)]
     public class BaseVariableWithEventEditor : BaseVariableEditor
     {

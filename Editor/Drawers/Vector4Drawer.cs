@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace ScriptableObjectArchitecture.Editor
 {
+    /// <summary>Custom <see cref="UnityEditor.PropertyDrawer"/> for <see cref="UnityEngine.Vector4"/> that renders all four components as an inline Vector4 field.</summary>
     [CustomPropertyDrawer(typeof(Vector4))]
     public class Vector4Drawer : PropertyDrawer
     {

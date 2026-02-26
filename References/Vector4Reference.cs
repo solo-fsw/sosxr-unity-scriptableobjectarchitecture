@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace ScriptableObjectArchitecture
 {
+    /// <summary>A <see cref="BaseReference{TBase,TVariable}"/> for <see cref="UnityEngine.Vector4"/> values.</summary>
     [Serializable]
     public sealed class Vector4Reference : BaseReference<Vector4, Vector4Variable>
     {

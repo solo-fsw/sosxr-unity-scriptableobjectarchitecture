@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace ScriptableObjectArchitecture.Editor
 {
+    /// <summary>Abstract base Inspector for typed <see cref="BaseGameEventListener{TType,TEvent,TResponse}"/> components; renders the event reference, response UnityEvent, and collapsible callback/gizmo debug sections.</summary>
     public abstract class BaseGameEventListenerEditor : UnityEditor.Editor
     {
         private StackTrace _stackTrace;
