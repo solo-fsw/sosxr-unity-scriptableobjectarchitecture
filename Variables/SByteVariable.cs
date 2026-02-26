@@ -6,10 +6,13 @@ using UnityEngine.Events;
 namespace ScriptableObjectArchitecture
 {
     [Serializable]
+    /// <summary>Serializable <see cref="UnityEngine.Events.UnityEvent{T}" /> carrying an <see cref="sbyte" /> value.</summary>
     public class SByteEvent : UnityEvent<sbyte>
     {
     }
 
+
+    /// <summary>ScriptableObject variable holding an <see cref="sbyte" /> value. Supports value clamping.</summary>
 
     [CreateAssetMenu(
         fileName = "SByteVariable.asset",

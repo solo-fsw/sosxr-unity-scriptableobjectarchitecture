@@ -6,10 +6,13 @@ using UnityEngine.Events;
 namespace ScriptableObjectArchitecture
 {
     [Serializable]
+    /// <summary>Serializable <see cref="UnityEngine.Events.UnityEvent{T}" /> carrying a <see cref="short" /> value.</summary>
     public class ShortEvent : UnityEvent<short>
     {
     }
 
+
+    /// <summary>ScriptableObject variable holding a <see cref="short" /> value. Supports value clamping.</summary>
 
     [CreateAssetMenu(
         fileName = "ShortVariable.asset",

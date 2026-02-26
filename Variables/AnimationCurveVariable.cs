@@ -6,10 +6,13 @@ using UnityEngine.Events;
 namespace ScriptableObjectArchitecture
 {
     [Serializable]
+    /// <summary>Serializable <see cref="UnityEngine.Events.UnityEvent{T}" /> carrying an <see cref="UnityEngine.AnimationCurve" /> value.</summary>
     public class AnimationCurveEvent : UnityEvent<AnimationCurve>
     {
     }
 
+
+    /// <summary>ScriptableObject variable holding an <see cref="UnityEngine.AnimationCurve" /> value.</summary>
 
     [CreateAssetMenu(
         fileName = "AnimationCurveVariable.asset",

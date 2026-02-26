@@ -7,6 +7,7 @@ using UnityEngine.Events;
 namespace ScriptableObjectArchitecture
 {
     [Serializable]
+    /// <summary>Serializable <see cref="UnityEngine.Events.UnityEvent{T}" /> carrying a <see cref="SceneInfo" /> value.</summary>
     public class SceneInfoEvent : UnityEvent<SceneInfo>
     {
     }

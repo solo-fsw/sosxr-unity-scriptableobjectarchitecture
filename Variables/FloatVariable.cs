@@ -6,10 +6,16 @@ using UnityEngine.Events;
 namespace ScriptableObjectArchitecture
 {
     [Serializable]
+    /// <summary>Serializable <see cref="UnityEngine.Events.UnityEvent{T}" /> carrying a <see cref="float" /> value.</summary>
     public class FloatEvent : UnityEvent<float>
     {
     }
 
+
+    /// <summary>
+    ///     ScriptableObject variable holding a <see cref="float" /> value.
+    ///     Supports value clamping and uses <see cref="UnityEngine.Mathf.Epsilon" /> for equality comparison.
+    /// </summary>
 
     [CreateAssetMenu(
         fileName = "FloatVariable.asset",

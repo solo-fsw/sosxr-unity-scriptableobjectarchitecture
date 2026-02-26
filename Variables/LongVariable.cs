@@ -6,10 +6,13 @@ using UnityEngine.Events;
 namespace ScriptableObjectArchitecture
 {
     [Serializable]
+    /// <summary>Serializable <see cref="UnityEngine.Events.UnityEvent{T}" /> carrying a <see cref="long" /> value.</summary>
     public class LongEvent : UnityEvent<long>
     {
     }
 
+
+    /// <summary>ScriptableObject variable holding a <see cref="long" /> value. Supports value clamping.</summary>
 
     [CreateAssetMenu(
         fileName = "LongVariable.asset",
