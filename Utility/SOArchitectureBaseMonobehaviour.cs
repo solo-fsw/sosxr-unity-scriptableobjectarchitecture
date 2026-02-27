@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-
 namespace ScriptableObjectArchitecture
 {
     /// <summary>
@@ -8,6 +7,6 @@ namespace ScriptableObjectArchitecture
     ///     (e.g. <see cref="BaseGameEventListener{TEvent, TResponse}" />, lifecycle helpers).
     ///     Acts as a common marker type for editor tooling.
     /// </summary>
-    {
-    }
+    public abstract class SOArchitectureBaseMonobehaviour : MonoBehaviour { }
 }
+

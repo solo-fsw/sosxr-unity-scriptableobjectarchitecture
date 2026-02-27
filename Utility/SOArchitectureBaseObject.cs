@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-
 namespace ScriptableObjectArchitecture
 {
     /// <summary>
@@ -8,6 +7,6 @@ namespace ScriptableObjectArchitecture
     ///     Inherits from <see cref="UnityEngine.ScriptableObject" /> and acts as a common marker type
     ///     for editor tooling such as the <see cref="ScriptableObjectArchitecture.Editor.CollectionEditor" />.
     /// </summary>
-    {
-    }
+    public abstract class SOArchitectureBaseObject : ScriptableObject { }
 }
+
