@@ -3,6 +3,7 @@
   "version": "0.2.1",
   "displayName": "ScriptableObject-Architecture",
   "description": "Makes using Scriptable Objects as a fundamental part of your architecture in Unity super easy",
+  "documentationUrl": "https://github.com/solo-fsw/sosxr-unity-scriptableobjectarchitecture",
   "unity": "2019.2",
   "dependencies": {
   },
