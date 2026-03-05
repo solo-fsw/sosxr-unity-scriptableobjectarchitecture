@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Reflection;
+using ScriptableObjectArchitecture;
 using UnityEngine;
 using Type = System.Type;
 
