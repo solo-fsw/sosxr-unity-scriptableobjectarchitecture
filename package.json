@@ -5,7 +5,9 @@
   "description": "Makes using Scriptable Objects as a fundamental part of your architecture in Unity super easy",
   "documentationUrl": "https://github.com/solo-fsw/sosxr-unity-scriptableobjectarchitecture",
   "unity": "2019.2",
-  "dependencies": {},
+  "dependencies": {
+    "com.unity.modules.imgui": "1.0.0"
+  },
   "keywords": [
     "scriptableobject",
     "architecture"
