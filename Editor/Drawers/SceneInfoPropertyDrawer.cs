@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace ScriptableObjectArchitecture.Editor
 {
+    /// <summary>Custom <see cref="UnityEditor.PropertyDrawer"/> for <see cref="SceneInfo"/> that renders a scene-asset object picker alongside read-only preview fields for the resolved scene name, build index, and enabled state.</summary>
     [CustomPropertyDrawer(typeof(SceneInfo))]
     internal sealed class SceneInfoPropertyDrawer : PropertyDrawer
     {

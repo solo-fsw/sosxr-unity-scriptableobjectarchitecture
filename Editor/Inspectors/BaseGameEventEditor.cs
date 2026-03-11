@@ -3,6 +3,7 @@
 
 namespace ScriptableObjectArchitecture.Editor
 {
+    /// <summary>Abstract base Inspector for <see cref="GameEventBase"/> assets; draws the Raise button (implemented by subclasses) and a collapsible <see cref="StackTrace"/> panel with a debug-mode warning.</summary>
     public abstract class BaseGameEventEditor : UnityEditor.Editor
     {
         private StackTrace _stackTrace;

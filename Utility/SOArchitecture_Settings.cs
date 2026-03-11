@@ -6,6 +6,12 @@ using UnityEditor;
 
 namespace ScriptableObjectArchitecture
 {
+    /// <summary>
+    ///     Project-scoped settings asset for SO Architecture.
+    ///     Stores the code generation output directory, the overwrite flag, and the default create-asset-menu order.
+    ///     Accessed as a singleton via <see cref="Instance" />; automatically created at the project root when missing.
+    /// </summary>
+
     public class SOArchitecture_Settings : ScriptableObject
     {
         [SerializeField] private string _codeGenerationTargetDirectory = "CODE_GENERATION";
@@ -15,18 +21,21 @@ namespace ScriptableObjectArchitecture
 
         [SerializeField] private int _defualtCreateAssetMenuOrder = 120;
 
+        /// <summary>Relative path under <c>Assets/</c> where generated code files are written.</summary>
         public string CodeGenerationTargetDirectory
         {
             get => _codeGenerationTargetDirectory;
             set => _codeGenerationTargetDirectory = value;
         }
 
+        /// <summary>When <c>true</c>, the code generator may overwrite existing files at the target path.</summary>
         public bool CodeGenerationAllowOverwrite
         {
             get => _codeGenerationAllowOverwrite;
             set => _codeGenerationAllowOverwrite = value;
         }
 
+        /// <summary>The default order value placed in <c>[CreateAssetMenu]</c> attributes on generated types.</summary>
         public int DefaultCreateAssetMenuOrder
         {
             get => _defualtCreateAssetMenuOrder;
@@ -35,6 +44,10 @@ namespace ScriptableObjectArchitecture
 
         #region Singleton
 
+        /// <summary>
+        ///     Singleton accessor. Returns the existing project asset if found; otherwise auto-creates one at the project root.
+        ///     Always returns <c>null</c> in non-editor builds.
+        /// </summary>
         public static SOArchitecture_Settings Instance
         {
             get

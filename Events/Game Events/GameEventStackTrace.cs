@@ -5,6 +5,13 @@ using Random = UnityEngine.Random;
 
 namespace ScriptableObjectArchitecture
 {
+    /// <summary>
+    ///     Immutable record of a single event-raise call, capturing the call stack, an optional payload value,
+    ///     and the frame count at the time of the call.
+    ///     Created via the factory methods <see cref="Create()" /> and <see cref="Create(object)" />.
+    ///     Implicitly converts to <see cref="string" /> for inspector display.
+    /// </summary>
+
     public class StackTraceEntry : IEquatable<StackTraceEntry>
     {
         private readonly int _id;
@@ -46,12 +53,14 @@ namespace ScriptableObjectArchitecture
         }
 
 
+        /// <summary>Creates a <see cref="StackTraceEntry" /> that includes the raised <paramref name="obj" /> value in its string representation.</summary>
         public static StackTraceEntry Create(object obj)
         {
             return new StackTraceEntry(Environment.StackTrace, obj);
         }
 
 
+        /// <summary>Creates a parameterless <see cref="StackTraceEntry" /> capturing only the current call stack.</summary>
         public static StackTraceEntry Create()
         {
             return new StackTraceEntry(Environment.StackTrace);
@@ -86,6 +95,7 @@ namespace ScriptableObjectArchitecture
         }
 
 
+        /// <summary>Implicitly converts this entry to a formatted string for inspector display.</summary>
         public static implicit operator string(StackTraceEntry trace)
         {
             return trace.ToString();

@@ -6,10 +6,13 @@ using UnityEngine.Events;
 namespace ScriptableObjectArchitecture
 {
     [Serializable]
+    /// <summary>Serializable <see cref="UnityEngine.Events.UnityEvent{T}" /> carrying a <see cref="UnityEngine.Quaternion" /> value.</summary>
     public class QuaternionEvent : UnityEvent<Quaternion>
     {
     }
 
+
+    /// <summary>ScriptableObject variable holding a <see cref="UnityEngine.Quaternion" /> value.</summary>
 
     [CreateAssetMenu(
         fileName = "QuaternionVariable.asset",

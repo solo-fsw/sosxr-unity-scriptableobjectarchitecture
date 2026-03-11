@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace ScriptableObjectArchitecture.Editor
 {
+    /// <summary>Custom <see cref="UnityEditor.PropertyDrawer"/> for <see cref="UnityEngine.Quaternion"/> that renders the value as an editable four-component (X, Y, Z, W) Vector4 field.</summary>
     [CustomPropertyDrawer(typeof(Quaternion))]
     public class QuaternionDrawer : PropertyDrawer
     {

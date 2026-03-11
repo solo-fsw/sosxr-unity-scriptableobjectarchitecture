@@ -6,10 +6,13 @@ using UnityEngine.Events;
 namespace ScriptableObjectArchitecture
 {
     [Serializable]
+    /// <summary>Serializable <see cref="UnityEngine.Events.UnityEvent{T}" /> carrying a <see cref="UnityEngine.Vector3" /> value.</summary>
     public class Vector3Event : UnityEvent<Vector3>
     {
     }
 
+
+    /// <summary>ScriptableObject variable holding a <see cref="UnityEngine.Vector3" /> value.</summary>
 
     [CreateAssetMenu(
         fileName = "Vector3Variable.asset",

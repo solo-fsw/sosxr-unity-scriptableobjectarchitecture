@@ -6,10 +6,13 @@ using UnityEngine.Events;
 namespace ScriptableObjectArchitecture
 {
     [Serializable]
+    /// <summary>Serializable <see cref="UnityEngine.Events.UnityEvent{T}" /> carrying a <see cref="ulong" /> value.</summary>
     public class ULongEvent : UnityEvent<ulong>
     {
     }
 
+
+    /// <summary>ScriptableObject variable holding a <see cref="ulong" /> value. Supports value clamping.</summary>
 
     [CreateAssetMenu(
         fileName = "UnsignedLongVariable.asset",

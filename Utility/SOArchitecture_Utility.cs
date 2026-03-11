@@ -1,5 +1,10 @@
 ﻿namespace ScriptableObjectArchitecture
 {
+    /// <summary>
+    ///     Shared constants for SO Architecture asset menu paths and ordering.
+    ///     Referenced by <c>[CreateAssetMenu]</c> attributes across all typed Variable, Collection, and Event types.
+    /// </summary>
+
     public static class SOArchitecture_Utility
     {
         public const int ASSET_MENU_ORDER_VARIABLES = 121;

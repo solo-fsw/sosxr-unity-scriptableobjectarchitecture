@@ -7,6 +7,7 @@ namespace ScriptableObjectArchitecture
         fileName = "BoolCollection.asset",
         menuName = SOArchitecture_Utility.COLLECTION_SUBMENU + "bool",
         order = SOArchitecture_Utility.ASSET_MENU_ORDER_COLLECTIONS + 5)]
+    /// <summary>ScriptableObject collection of <see cref="bool"/> items.</summary>
     public class BoolCollection : Collection<bool>
     {
     }

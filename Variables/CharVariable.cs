@@ -6,10 +6,13 @@ using UnityEngine.Events;
 namespace ScriptableObjectArchitecture
 {
     [Serializable]
+    /// <summary>Serializable <see cref="UnityEngine.Events.UnityEvent{T}" /> carrying a <see cref="char" /> value.</summary>
     public class CharEvent : UnityEvent<char>
     {
     }
 
+
+    /// <summary>ScriptableObject variable holding a <see cref="char" /> value.</summary>
 
     [CreateAssetMenu(
         fileName = "CharVariable.asset",

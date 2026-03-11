@@ -8,6 +8,10 @@ using UnityEngine.Events;
 
 namespace ScriptableObjectArchitecture.Editor
 {
+    /// <summary>
+    ///     Editor UI widget that renders a resizable, scrollable stack-trace panel for <see cref="IStackTraceObject"/> targets.
+    ///     Displays a list of recorded traces and a detail view for the selected entry, with Clear and Collapse controls.
+    /// </summary>
     public class StackTrace
     {
         private StackTraceEntry _selectedTrace;

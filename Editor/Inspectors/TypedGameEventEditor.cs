@@ -6,6 +6,7 @@ using Type = System.Type;
 
 namespace ScriptableObjectArchitecture.Editor
 {
+    /// <summary>Custom Inspector for typed <see cref="GameEventBase{TType}"/> assets; draws a debug-value field and a "Raise" button that fires the event with the current debug value for editor-time testing.</summary>
     [CustomEditor(typeof(GameEventBase<>), true)]
     public class TypedGameEventEditor : BaseGameEventEditor
     {

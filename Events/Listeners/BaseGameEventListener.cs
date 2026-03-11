@@ -8,6 +8,15 @@ using UnityEditor;
 
 namespace ScriptableObjectArchitecture
 {
+    /// <summary>
+    ///     MonoBehaviour listener for typed <see cref="GameEventBase{TType}" /> ScriptableObject events.
+    ///     On enable, registers itself with the assigned event and invokes the serialized <typeparamref name="TResponse" />
+    ///     Unity Event when notified. Automatically re-registers when the event field is changed at runtime.
+    /// </summary>
+    /// <typeparam name="TType">The payload type carried by the game event.</typeparam>
+    /// <typeparam name="TEvent">The <see cref="GameEventBase{TType}" /> asset type.</typeparam>
+    /// <typeparam name="TResponse">The serializable <see cref="UnityEngine.Events.UnityEvent{T}" /> invoked on notification.</typeparam>
+
     public abstract class BaseGameEventListener<TType, TEvent, TResponse> : DebuggableGameEventListener, IGameEventListener<TType>
         where TEvent : GameEventBase<TType>
         where TResponse : UnityEvent<TType>
@@ -20,6 +29,7 @@ namespace ScriptableObjectArchitecture
         protected override UnityEventBase Response => _response;
 
 
+        /// <summary>Called by the registered event asset when it is raised; invokes the <c>Response</c> Unity Event with <paramref name="value" />.</summary>
         public void OnEventRaised(TType value)
         {
             RaiseResponse(value);
@@ -67,6 +77,14 @@ namespace ScriptableObjectArchitecture
     }
 
 
+    /// <summary>
+    ///     MonoBehaviour listener for untyped (parameterless) <see cref="GameEventBase" /> ScriptableObject events.
+    ///     On enable, registers itself with the assigned event and invokes the serialized <typeparamref name="TResponse" />
+    ///     Unity Event when notified.
+    /// </summary>
+    /// <typeparam name="TEvent">The <see cref="GameEventBase" /> asset type.</typeparam>
+    /// <typeparam name="TResponse">The serializable <see cref="UnityEngine.Events.UnityEvent" /> invoked on notification.</typeparam>
+
     public abstract class BaseGameEventListener<TEvent, TResponse> : DebuggableGameEventListener, IGameEventListener
         where TEvent : GameEventBase
         where TResponse : UnityEvent
@@ -78,6 +96,7 @@ namespace ScriptableObjectArchitecture
         protected override UnityEventBase Response => _response;
 
 
+        /// <summary>Called by the registered event asset when it is raised; invokes the <c>Response</c> Unity Event.</summary>
         public void OnEventRaised()
         {
             RaiseResponse();
@@ -125,6 +144,12 @@ namespace ScriptableObjectArchitecture
     }
 
 
+    /// <summary>
+    ///     Abstract MonoBehaviour base that provides editor-only visual debugging (scene-view gizmo lines and animated dots)
+    ///     showing real-time event flow between the listener and its response targets.
+    ///     Also maintains a <see cref="StackTraces" /> list for the inspector debug view.
+    /// </summary>
+
     public abstract class DebuggableGameEventListener : SOArchitectureBaseMonobehaviour, IStackTraceObject
     {
         #pragma warning disable 0414
@@ -133,9 +158,12 @@ namespace ScriptableObjectArchitecture
         [SerializeField] private Color _debugColor = Color.cyan;
         #pragma warning restore
 
+        /// <summary>Ordered list of stack trace entries recorded each time this listener was notified (most recent first).</summary>
         public List<StackTraceEntry> StackTraces { get; } = new();
 
+        /// <summary>The <see cref="ScriptableObject" /> game event this listener is registered with.</summary>
         protected abstract ScriptableObject GameEvent { get; }
+        /// <summary>The <see cref="UnityEngine.Events.UnityEventBase" /> invoked when the event fires.</summary>
         protected abstract UnityEventBase Response { get; }
 
 

@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Reflection;
+using ScriptableObjectArchitecture;
 using UnityEngine;
 using Type = System.Type;
 
 
+/// <summary>Static utility for reflecting on <see cref="BaseReference"/> fields to extract the concrete reference type and underlying value type at editor time.</summary>
 public static class BaseReferenceHelper
 {
     private const BindingFlags NonPublicBindingsFlag = BindingFlags.Instance | BindingFlags.NonPublic;

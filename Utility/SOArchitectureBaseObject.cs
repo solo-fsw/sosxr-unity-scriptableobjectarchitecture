@@ -1,12 +1,13 @@
-﻿using UnityEngine;
-
+﻿using UnityEditor;
+using UnityEngine;
 
 namespace ScriptableObjectArchitecture
 {
     /// <summary>
-    ///     Base class for SOArchitecture assets
+    ///     Root ScriptableObject base class for all SO Architecture assets (Variables, Collections, Game Events).
+    ///     Inherits from <see cref="UnityEngine.ScriptableObject" /> and acts as a common marker type
+    ///     for editor tooling such as the <see cref="Editor.CollectionEditor" />.
     /// </summary>
-    public abstract class SOArchitectureBaseObject : ScriptableObject
-    {
-    }
+    public abstract class SOArchitectureBaseObject : ScriptableObject { }
 }
+

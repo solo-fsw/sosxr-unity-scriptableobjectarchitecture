@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace ScriptableObjectArchitecture.Editor
 {
+    /// <summary>Custom Inspector for three-argument <see cref="BaseGameEventListener{TType,TEvent,TResponse}"/> components; draws a debug-value field and a "Raise" button that calls <c>OnEventRaised</c> via reflection.</summary>
     [CustomEditor(typeof(BaseGameEventListener<,,>), true)]
     public class TypesGameEventListenerEditor : BaseGameEventListenerEditor
     {

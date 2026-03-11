@@ -6,10 +6,13 @@ using UnityEngine.Events;
 namespace ScriptableObjectArchitecture
 {
     [Serializable]
+    /// <summary>Serializable <see cref="UnityEngine.Events.UnityEvent{T}" /> carrying an <see cref="int" /> value.</summary>
     public class IntEvent : UnityEvent<int>
     {
     }
 
+
+    /// <summary>ScriptableObject variable holding an <see cref="int" /> value. Supports value clamping.</summary>
 
     [CreateAssetMenu(
         fileName = "IntVariable.asset",

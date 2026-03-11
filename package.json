@@ -1,18 +1,18 @@
 {
   "name": "com.danieleverland.scriptableobjectarchitecture",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "displayName": "ScriptableObject-Architecture",
   "description": "Makes using Scriptable Objects as a fundamental part of your architecture in Unity super easy",
+  "documentationUrl": "https://github.com/solo-fsw/sosxr-unity-scriptableobjectarchitecture",
   "unity": "2019.2",
-  "dependencies": {
-  },
+  "dependencies": {},
   "keywords": [
     "scriptableobject",
     "architecture"
   ],
   "samples": [
     {
-      "displayName": "Samples",
+      "displayName": "Scriptable Object Architecture samples",
       "description": "Contains samples of this package",
       "path": "Samples~/Samples"
     }
