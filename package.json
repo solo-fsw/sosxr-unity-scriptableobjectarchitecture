@@ -6,7 +6,8 @@
   "documentationUrl": "https://github.com/solo-fsw/sosxr-unity-scriptableobjectarchitecture",
   "unity": "2019.2",
   "dependencies": {
-    "com.unity.modules.imgui": "1.0.0"
+    "com.unity.modules.imgui": "1.0.0",
+    "com.unity.modules.audio": "1.0.0"
   },
   "keywords": [
     "scriptableobject",
