@@ -1,0 +1,49 @@
+// This file is generated. Do not modify by hand.
+// XML documentation file not found. To check if public methods have XML comments,
+// make sure the XML doc file is present and located next to the scraped dll
+namespace ScriptableObjectArchitecture.Examples
+{
+    public class CollectionCountDisplayer : UnityEngine.MonoBehaviour
+    {
+        public CollectionCountDisplayer() {}
+    }
+
+    public class DamageDealer : UnityEngine.MonoBehaviour
+    {
+        public DamageDealer() {}
+        protected virtual void DealDamage(UnitHealth target);
+    }
+
+    public class DamageDealerWithEvent : DamageDealer
+    {
+        public DamageDealerWithEvent() {}
+        protected override void DealDamage(UnitHealth target);
+    }
+
+    public class Disabler : UnityEngine.MonoBehaviour
+    {
+        public Disabler() {}
+        public void DisableRandom();
+    }
+
+    public class ImageFillSetter : UnityEngine.MonoBehaviour
+    {
+        public ImageFillSetter() {}
+    }
+
+    public class KeyboardMover : UnityEngine.MonoBehaviour
+    {
+        public KeyboardMover() {}
+    }
+
+    public class ObjectAdder : UnityEngine.MonoBehaviour
+    {
+        public ObjectAdder() {}
+    }
+
+    public class UnitHealth : UnityEngine.MonoBehaviour
+    {
+        public FloatReference Health;
+        public UnitHealth() {}
+    }
+}

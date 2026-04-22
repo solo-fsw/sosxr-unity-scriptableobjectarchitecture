@@ -1,0 +1,188 @@
+// This file is generated. Do not modify by hand.
+// XML documentation file not found. To check if public methods have XML comments,
+// make sure the XML doc file is present and located next to the scraped dll
+public static class BaseReferenceHelper
+{
+    public static System.Type GetReferenceType(System.Reflection.FieldInfo fieldInfo);
+    public static System.Type GetValueType(System.Reflection.FieldInfo fieldInfo);
+}
+
+namespace ScriptableObjectArchitecture.Editor
+{
+    public abstract class BaseGameEventEditor : UnityEditor.Editor
+    {
+        protected BaseGameEventEditor() {}
+        protected abstract void DrawRaiseButton();
+        protected virtual void OnEnable();
+        public override void OnInspectorGUI();
+    }
+
+    public abstract class BaseGameEventListenerEditor : UnityEditor.Editor
+    {
+        protected BaseGameEventListenerEditor() {}
+        protected abstract void DrawRaiseButton();
+        protected virtual void OnEnable();
+        public override void OnInspectorGUI();
+    }
+
+    public abstract class BasePropertyDrawIterator : PropertyIterator, IPropertyDrawIterator, IPropertyIterator
+    {
+        protected readonly bool drawLabel;
+        protected readonly int startDepth;
+        protected readonly int startIndentLevel;
+        public BasePropertyDrawIterator(UnityEditor.SerializedProperty property, bool drawLabel) {}
+        public virtual void Draw();
+        protected abstract void DrawProperty();
+        protected abstract void DrawPropertyWithLabel();
+        public override void End();
+    }
+
+    [UnityEditor.CustomPropertyDrawer(typeof(BaseReference), true)] public sealed class BaseReferenceDrawer : UnityEditor.PropertyDrawer
+    {
+        public BaseReferenceDrawer() {}
+        public override float GetPropertyHeight(UnityEditor.SerializedProperty property, UnityEngine.GUIContent label);
+        public override void OnGUI(UnityEngine.Rect position, UnityEditor.SerializedProperty property, UnityEngine.GUIContent label);
+    }
+
+    [UnityEditor.CustomEditor(typeof(BaseVariable<>), true)] public class BaseVariableEditor : UnityEditor.Editor
+    {
+        protected bool IsClampable { get; }
+        protected bool IsClamped { get; }
+        public BaseVariableEditor() {}
+        protected void DrawClampedFields();
+        protected void DrawReadonlyField();
+        protected virtual void DrawValue();
+        protected virtual void OnEnable();
+        public override void OnInspectorGUI();
+    }
+
+    [UnityEditor.CustomEditor(typeof(BaseVariable<>), true)] public class BaseVariableWithEventEditor : BaseVariableEditor
+    {
+        public BaseVariableWithEventEditor() {}
+        public override void OnInspectorGUI();
+    }
+
+    [UnityEditor.CustomEditor(typeof(BaseCollection), true)] public class CollectionEditor : UnityEditor.Editor
+    {
+        public CollectionEditor() {}
+        public override void OnInspectorGUI();
+    }
+
+    [UnityEditor.CustomEditor(typeof(GameEventBase), true)] public sealed class GameEventEditor : BaseGameEventEditor
+    {
+        public GameEventEditor() {}
+        protected override void DrawRaiseButton();
+    }
+
+    [UnityEditor.CustomEditor(typeof(BaseGameEventListener<>), true)] public class GameEventListenerEditor : BaseGameEventListenerEditor
+    {
+        public GameEventListenerEditor() {}
+        protected override void DrawRaiseButton();
+        protected override void OnEnable();
+    }
+
+    public static class GenericPropertyDrawer
+    {
+        public static void DrawPropertyDrawer(UnityEngine.Rect rect, UnityEditor.SerializedProperty property, System.Type type, bool drawLabel = true);
+        public static void DrawPropertyDrawerLayout(UnityEditor.SerializedProperty property, System.Type type, bool drawLabel = true);
+        public static float GetHeight(UnityEditor.SerializedProperty property, System.Type type);
+    }
+
+    public interface IPropertyDrawIterator : IPropertyIterator
+    {
+        public void Draw();
+    }
+
+    public interface IPropertyIterator
+    {
+        public void End();
+        public bool Next();
+    }
+
+    public class PropertyDrawIterator : BasePropertyDrawIterator
+    {
+        public PropertyDrawIterator(UnityEngine.Rect rect, UnityEditor.SerializedProperty property, bool drawLabel) {}
+        public override void Draw();
+        protected override void DrawProperty();
+        protected override void DrawPropertyWithLabel();
+    }
+
+    public class PropertyDrawIteratorLayout : BasePropertyDrawIterator
+    {
+        public PropertyDrawIteratorLayout(UnityEditor.SerializedProperty property, bool drawLabel) {}
+        protected override void DrawProperty();
+        protected override void DrawPropertyWithLabel();
+    }
+
+    public class PropertyIterator : IPropertyIterator
+    {
+        protected readonly UnityEditor.SerializedProperty endProperty;
+        protected readonly UnityEditor.SerializedProperty iterator;
+        public PropertyIterator(UnityEditor.SerializedProperty property) {}
+        public virtual void End();
+        public virtual bool Next();
+    }
+
+    [UnityEditor.CustomPropertyDrawer(typeof(UnityEngine.Quaternion))] public class QuaternionDrawer : UnityEditor.PropertyDrawer
+    {
+        public QuaternionDrawer() {}
+        public override float GetPropertyHeight(UnityEditor.SerializedProperty property, UnityEngine.GUIContent label);
+        public override void OnGUI(UnityEngine.Rect position, UnityEditor.SerializedProperty property, UnityEngine.GUIContent label);
+    }
+
+    public class SO_CodeGenerationWindow : UnityEditor.EditorWindow
+    {
+        public SO_CodeGenerationWindow() {}
+    }
+
+    public static class SO_CodeGenerator
+    {
+        public const int TYPE_COUNT = 6;
+        public static void Generate(SO_CodeGenerator.Data data);
+        public struct Data
+        {
+            public string MenuName;
+            public string Namespace;
+            public int Order;
+            public string TypeName;
+            public bool[] Types;
+        }
+    }
+
+    public static class SOArchitecture_EditorUtility
+    {
+        public static UnityEngine.GUIStyle DebugStyle { get; }
+        public static UnityEngine.Rect GetReorderableListElementFieldRect(UnityEngine.Rect elementRect);
+        public static bool HasPropertyDrawer(System.Type type);
+        public static bool SupportsMultiLine(System.Type type);
+    }
+
+    public class StackTrace
+    {
+        public float Height { get; set; }
+        public UnityEngine.Events.UnityEvent OnRepaint { get; set; }
+        public StackTrace(IStackTraceObject target, bool startCollapsed = false) {}
+        public void Draw();
+    }
+
+    [UnityEditor.CustomEditor(typeof(GameEventBase<>), true)] public class TypedGameEventEditor : BaseGameEventEditor
+    {
+        public TypedGameEventEditor() {}
+        protected override void DrawRaiseButton();
+        protected override void OnEnable();
+    }
+
+    [UnityEditor.CustomEditor(typeof(BaseGameEventListener<>), true)] public class TypesGameEventListenerEditor : BaseGameEventListenerEditor
+    {
+        public TypesGameEventListenerEditor() {}
+        protected override void DrawRaiseButton();
+        protected override void OnEnable();
+    }
+
+    [UnityEditor.CustomPropertyDrawer(typeof(UnityEngine.Vector4))] public class Vector4Drawer : UnityEditor.PropertyDrawer
+    {
+        public Vector4Drawer() {}
+        public override float GetPropertyHeight(UnityEditor.SerializedProperty property, UnityEngine.GUIContent label);
+        public override void OnGUI(UnityEngine.Rect position, UnityEditor.SerializedProperty property, UnityEngine.GUIContent label);
+    }
+}

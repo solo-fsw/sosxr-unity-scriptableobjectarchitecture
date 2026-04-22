@@ -1,0 +1,1213 @@
+// This file is generated. Do not modify by hand.
+// XML documentation file not found. To check if public methods have XML comments,
+// make sure the XML doc file is present and located next to the scraped dll
+public interface ISOAwake
+{
+    public void SOAwake();
+}
+
+public interface ISOOnDisable
+{
+    public void SOOnDisable();
+}
+
+public interface ISOStart
+{
+    public void SOStart();
+}
+
+public interface ISOUpdate
+{
+    public void SOUpdate();
+}
+
+[System.AttributeUsage(System.AttributeTargets.Class)] public class MultiLine : System.Attribute
+{
+    public MultiLine() {}
+}
+
+public class ScriptableObjectAwake : UnityEngine.MonoBehaviour
+{
+    public ScriptableObjectAwake() {}
+}
+
+public class ScriptableObjectOnDisable : UnityEngine.MonoBehaviour
+{
+    public ScriptableObjectOnDisable() {}
+}
+
+public class ScriptableObjectStart : UnityEngine.MonoBehaviour
+{
+    public ScriptableObjectStart() {}
+}
+
+public class ScriptableObjectUpdate : UnityEngine.MonoBehaviour
+{
+    public ScriptableObjectUpdate() {}
+}
+
+public class SOA_Collector : UnityEngine.MonoBehaviour
+{
+    public System.Collections.Generic.List<UnityEngine.ScriptableObject> m_load;
+    public SOA_Collector() {}
+}
+
+public abstract class SOSXRScriptableObject : UnityEngine.ScriptableObject
+{
+    protected SOSXRScriptableObject() {}
+    protected virtual void OnCreated();
+    protected virtual void OnLoaded();
+    protected virtual void OnOutOfScope();
+    protected virtual void OnScriptableObjectDestroyed();
+}
+
+[UnityEngine.CreateAssetMenu(menuName = @"SOSXR/Test")] public class Test : SOSXRScriptableObject
+{
+    public Test() {}
+}
+
+namespace ScriptableObjectArchitecture
+{
+    [UnityEngine.CreateAssetMenu(fileName = @"AnimationCurveCollection.asset", menuName = @"SOSXR/SO Architecture/Collections/Advanced/AnimationCurve", order = 120)] public class AnimationCurveCollection : ScriptableObjectArchitecture.Collection<UnityEngine.AnimationCurve>
+    {
+        public AnimationCurveCollection() {}
+    }
+
+    public class AnimationCurveEvent : UnityEngine.Events.UnityEvent<UnityEngine.AnimationCurve>
+    {
+        public AnimationCurveEvent() {}
+    }
+
+    public sealed class AnimationCurveReference : ScriptableObjectArchitecture.BaseReference<UnityEngine.AnimationCurve, AnimationCurveVariable>
+    {
+        public AnimationCurveReference() {}
+        public AnimationCurveReference(UnityEngine.AnimationCurve value) {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"AnimationCurveVariable.asset", menuName = @"SOSXR/SO Architecture/Variables/Advanced/AnimationCurve", order = 120)] public class AnimationCurveVariable : ScriptableObjectArchitecture.BaseVariable<UnityEngine.AnimationCurve, AnimationCurveEvent>
+    {
+        public AnimationCurveVariable() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"AudioClipCollection.asset", menuName = @"SOSXR/SO Architecture/Collections/Advanced/AudioClip", order = 120)] public class AudioClipCollection : ScriptableObjectArchitecture.Collection<UnityEngine.AudioClip>
+    {
+        public AudioClipCollection() {}
+    }
+
+    public class AudioClipEvent : UnityEngine.Events.UnityEvent<UnityEngine.AudioClip>
+    {
+        public AudioClipEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"AudioClipGameEvent.asset", menuName = @"SOSXR/SO Architecture/Game Events/Advanced/AudioClip", order = 127)] public sealed class AudioClipGameEvent : ScriptableObjectArchitecture.GameEventBase<UnityEngine.AudioClip>
+    {
+        public AudioClipGameEvent() {}
+    }
+
+    [UnityEngine.AddComponentMenu(@"SOSXR/SO Architecture/Event Listeners/AudioClip Event Listener")] public sealed class AudioClipGameEventListener : ScriptableObjectArchitecture.BaseGameEventListener<UnityEngine.AudioClip, AudioClipGameEvent, AudioClipUnityEvent>
+    {
+        public AudioClipGameEventListener() {}
+    }
+
+    public sealed class AudioClipReference : ScriptableObjectArchitecture.BaseReference<UnityEngine.AudioClip, AudioClipVariable>
+    {
+        public AudioClipReference() {}
+        public AudioClipReference(UnityEngine.AudioClip value) {}
+    }
+
+    public sealed class AudioClipUnityEvent : UnityEngine.Events.UnityEvent<UnityEngine.AudioClip>
+    {
+        public AudioClipUnityEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"AudioClipVariable.asset", menuName = @"SOSXR/SO Architecture/Variables/Advanced/AudioClip", order = 120)] public class AudioClipVariable : ScriptableObjectArchitecture.BaseVariable<UnityEngine.AudioClip, AudioClipEvent>
+    {
+        public AudioClipVariable() {}
+    }
+
+    public abstract class BaseCollection : SOArchitectureBaseObject, System.Collections.IEnumerable
+    {
+        public int Count { get; }
+        public object this[int index] { get; set; }
+        public abstract System.Collections.IList List { get; }
+        public abstract System.Type Type { get; }
+        protected BaseCollection() {}
+        public bool Contains(object obj);
+    }
+
+    public abstract class BaseGameEventListener<TEvent, TResponse> : DebuggableGameEventListener, IGameEventListener where TEvent : GameEventBase where TResponse : UnityEngine.Events.UnityEvent
+    {
+        protected override UnityEngine.ScriptableObject GameEvent { get; }
+        protected override UnityEngine.Events.UnityEventBase Response { get; }
+        protected BaseGameEventListener() {}
+        public void OnEventRaised();
+        protected void RaiseResponse();
+    }
+
+    public abstract class BaseGameEventListener<TType, TEvent, TResponse> : DebuggableGameEventListener, ScriptableObjectArchitecture.IGameEventListener<TType> where TEvent : ScriptableObjectArchitecture.GameEventBase<TType> where TResponse : UnityEngine.Events.UnityEvent<TType>
+    {
+        [UnityEngine.SerializeField] protected TType _debugValue;
+        protected override UnityEngine.ScriptableObject GameEvent { get; }
+        protected override UnityEngine.Events.UnityEventBase Response { get; }
+        protected BaseGameEventListener() {}
+        public void OnEventRaised(TType value);
+    }
+
+    public abstract class BaseReference
+    {
+        protected BaseReference() {}
+    }
+
+    public class BaseReference<TBase, TVariable> : BaseReference where TVariable : ScriptableObjectArchitecture.BaseVariable<TBase>
+    {
+        [UnityEngine.SerializeField] protected TBase _constantValue;
+        [UnityEngine.SerializeField] protected bool _useConstant;
+        [UnityEngine.SerializeField] protected TVariable _variable;
+        public bool IsValueDefined { get; }
+        public TBase Value { get; set; }
+        public TVariable Variable { get; set; }
+        public BaseReference() {}
+        public BaseReference(TBase baseValue) {}
+        public void AddListener(IGameEventListener listener);
+        public void AddListener(System.Action action);
+        public BaseReference CreateCopy();
+        public void RemoveListener(IGameEventListener listener);
+        public void RemoveListener(System.Action action);
+        public override string ToString();
+    }
+
+    public abstract class BaseVariable : GameEventBase
+    {
+        public abstract object BaseValue { get; set; }
+        public abstract bool Clampable { get; }
+        public abstract bool IsClamped { get; }
+        public abstract bool ReadOnly { get; }
+        public abstract System.Type ReferenceType { get; }
+        public abstract System.Type Type { get; }
+        public abstract bool UseDefaultValue { get; }
+        protected BaseVariable() {}
+    }
+
+    public abstract class BaseVariable<T> : BaseVariable
+    {
+        [UnityEngine.SerializeField] protected T _defaultValue;
+        [UnityEngine.SerializeField] protected bool _isClamped;
+        [UnityEngine.SerializeField] protected T _maxClampedValue;
+        [UnityEngine.SerializeField] protected T _minClampedValue;
+        [UnityEngine.SerializeField] protected T _value;
+        public override object BaseValue { get; set; }
+        public override bool Clampable { get; }
+        public T DefaultValue { get; set; }
+        public override bool IsClamped { get; }
+        public virtual T MaxClampValue { get; }
+        public virtual T MinClampValue { get; }
+        public override bool ReadOnly { get; }
+        public override System.Type ReferenceType { get; }
+        public override System.Type Type { get; }
+        public override bool UseDefaultValue { get; }
+        public virtual T Value { get; set; }
+        protected BaseVariable() {}
+        protected virtual bool AreValuesEqual(T a, T b);
+        protected virtual T ClampValue(T value);
+        public void OnEnable();
+        public void OnValidate();
+        public static T op_Implicit(ScriptableObjectArchitecture.BaseVariable<T> variable);
+        public virtual T SetValue(ScriptableObjectArchitecture.BaseVariable<T> value);
+        public virtual T SetValue(T newValue);
+        public override string ToString();
+    }
+
+    public abstract class BaseVariable<T, TEvent> : ScriptableObjectArchitecture.BaseVariable<T> where TEvent : UnityEngine.Events.UnityEvent<T>
+    {
+        protected BaseVariable() {}
+        public void AddListener(UnityEngine.Events.UnityAction<T> callback);
+        public override void Raise();
+        public override void RemoveAll();
+        public void RemoveListener(UnityEngine.Events.UnityAction<T> callback);
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"BoolCollection.asset", menuName = @"SOSXR/SO Architecture/Collections/bool", order = 128)] public class BoolCollection : ScriptableObjectArchitecture.Collection<bool>
+    {
+        public BoolCollection() {}
+    }
+
+    public class BoolEvent : UnityEngine.Events.UnityEvent<bool>
+    {
+        public BoolEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"BoolGameEvent.asset", menuName = @"SOSXR/SO Architecture/Game Events/bool", order = 127)] public sealed class BoolGameEvent : ScriptableObjectArchitecture.GameEventBase<bool>
+    {
+        public BoolGameEvent() {}
+    }
+
+    [UnityEngine.AddComponentMenu(@"SOSXR/SO Architecture/Event Listeners/bool Event Listener")] public sealed class BoolGameEventListener : ScriptableObjectArchitecture.BaseGameEventListener<bool, BoolGameEvent, BoolUnityEvent>
+    {
+        public BoolGameEventListener() {}
+    }
+
+    public sealed class BoolReference : ScriptableObjectArchitecture.BaseReference<bool, BoolVariable>
+    {
+        public BoolReference() {}
+        public BoolReference(bool value) {}
+    }
+
+    public sealed class BoolUnityEvent : UnityEngine.Events.UnityEvent<bool>
+    {
+        public BoolUnityEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"BoolVariable.asset", menuName = @"SOSXR/SO Architecture/Variables/bool", order = 128)] public sealed class BoolVariable : ScriptableObjectArchitecture.BaseVariable<bool, BoolEvent>
+    {
+        public BoolVariable() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"ByteCollection.asset", menuName = @"SOSXR/SO Architecture/Collections/Advanced/byte", order = 129)] public class ByteCollection : ScriptableObjectArchitecture.Collection<byte>
+    {
+        public ByteCollection() {}
+    }
+
+    public class ByteEvent : UnityEngine.Events.UnityEvent<byte>
+    {
+        public ByteEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"ByteGameEvent.asset", menuName = @"SOSXR/SO Architecture/Game Events/Advanced/byte", order = 128)] public sealed class ByteGameEvent : ScriptableObjectArchitecture.GameEventBase<byte>
+    {
+        public ByteGameEvent() {}
+    }
+
+    [UnityEngine.AddComponentMenu(@"SOSXR/SO Architecture/Event Listeners/byte Event Listener")] public sealed class ByteGameEventListener : ScriptableObjectArchitecture.BaseGameEventListener<byte, ByteGameEvent, ByteUnityEvent>
+    {
+        public ByteGameEventListener() {}
+    }
+
+    public sealed class ByteReference : ScriptableObjectArchitecture.BaseReference<byte, ByteVariable>
+    {
+        public ByteReference() {}
+        public ByteReference(byte value) {}
+    }
+
+    public sealed class ByteUnityEvent : UnityEngine.Events.UnityEvent<byte>
+    {
+        public ByteUnityEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"ByteVariable.asset", menuName = @"SOSXR/SO Architecture/Variables/Advanced/byte", order = 129)] public class ByteVariable : ScriptableObjectArchitecture.BaseVariable<byte, ByteEvent>
+    {
+        public override bool Clampable { get; }
+        public ByteVariable() {}
+        protected override byte ClampValue(byte value);
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"CharCollection.asset", menuName = @"SOSXR/SO Architecture/Collections/Advanced/char", order = 130)] public class CharCollection : ScriptableObjectArchitecture.Collection<char>
+    {
+        public CharCollection() {}
+    }
+
+    public class CharEvent : UnityEngine.Events.UnityEvent<char>
+    {
+        public CharEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"CharGameEvent.asset", menuName = @"SOSXR/SO Architecture/Game Events/Advanced/char", order = 129)] public sealed class CharGameEvent : ScriptableObjectArchitecture.GameEventBase<char>
+    {
+        public CharGameEvent() {}
+    }
+
+    [UnityEngine.AddComponentMenu(@"SOSXR/SO Architecture/Event Listeners/char Event Listener")] public sealed class CharGameEventListener : ScriptableObjectArchitecture.BaseGameEventListener<char, CharGameEvent, CharUnityEvent>
+    {
+        public CharGameEventListener() {}
+    }
+
+    public sealed class CharReference : ScriptableObjectArchitecture.BaseReference<char, CharVariable>
+    {
+        public CharReference() {}
+        public CharReference(char value) {}
+    }
+
+    public sealed class CharUnityEvent : UnityEngine.Events.UnityEvent<char>
+    {
+        public CharUnityEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"CharVariable.asset", menuName = @"SOSXR/SO Architecture/Variables/Advanced/char", order = 130)] public sealed class CharVariable : ScriptableObjectArchitecture.BaseVariable<char, CharEvent>
+    {
+        public CharVariable() {}
+    }
+
+    public class Collection<T> : BaseCollection, System.Collections.Generic.IEnumerable<T>, System.Collections.IEnumerable
+    {
+        public T this[int index] { get; set; }
+        public override System.Collections.IList List { get; }
+        public override System.Type Type { get; }
+        public Collection() {}
+        public void Add(T obj);
+        public void Clear();
+        public bool Contains(T value);
+        public System.Collections.Generic.IEnumerator<T> GetEnumerator();
+        public int IndexOf(T value);
+        public void Insert(int index, T value);
+        public void Remove(T obj);
+        public void RemoveAt(int index);
+        public T[] ToArray();
+        public override string ToString();
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"Color32Collection.asset", menuName = @"SOSXR/SO Architecture/Collections/Structs/Color32", order = 120)] public class Color32Collection : ScriptableObjectArchitecture.Collection<UnityEngine.Color32>
+    {
+        public Color32Collection() {}
+    }
+
+    public class Color32Event : UnityEngine.Events.UnityEvent<UnityEngine.Color32>
+    {
+        public Color32Event() {}
+    }
+
+    public sealed class Color32Reference : ScriptableObjectArchitecture.BaseReference<UnityEngine.Color32, Color32Variable>
+    {
+        public Color32Reference() {}
+        public Color32Reference(UnityEngine.Color32 value) {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"Color32Variable.asset", menuName = @"SOSXR/SO Architecture/Variables/Structs/Color32", order = 120)] public class Color32Variable : ScriptableObjectArchitecture.BaseVariable<UnityEngine.Color32, Color32Event>
+    {
+        public Color32Variable() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"ColorCollection.asset", menuName = @"SOSXR/SO Architecture/Collections/Structs/Color", order = 120)] public class ColorCollection : ScriptableObjectArchitecture.Collection<UnityEngine.Color>
+    {
+        public ColorCollection() {}
+    }
+
+    public class ColorEvent : UnityEngine.Events.UnityEvent<UnityEngine.Color>
+    {
+        public ColorEvent() {}
+    }
+
+    public sealed class ColorReference : ScriptableObjectArchitecture.BaseReference<UnityEngine.Color, ColorVariable>
+    {
+        public ColorReference() {}
+        public ColorReference(UnityEngine.Color value) {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"ColorVariable.asset", menuName = @"SOSXR/SO Architecture/Variables/Structs/Color", order = 120)] public class ColorVariable : ScriptableObjectArchitecture.BaseVariable<UnityEngine.Color, ColorEvent>
+    {
+        public ColorVariable() {}
+    }
+
+    public abstract class DebuggableGameEventListener : SOArchitectureBaseMonobehaviour, IStackTraceObject
+    {
+        protected abstract UnityEngine.ScriptableObject GameEvent { get; }
+        protected abstract UnityEngine.Events.UnityEventBase Response { get; }
+        public System.Collections.Generic.List<StackTraceEntry> StackTraces { get; }
+        protected DebuggableGameEventListener() {}
+        public void AddStackTrace();
+        public void AddStackTrace(object obj);
+        protected void CreateDebugEntry(UnityEngine.Events.UnityEventBase response);
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"DoubleCollection.asset", menuName = @"SOSXR/SO Architecture/Collections/Advanced/double", order = 131)] public class DoubleCollection : ScriptableObjectArchitecture.Collection<double>
+    {
+        public DoubleCollection() {}
+    }
+
+    public class DoubleEvent : UnityEngine.Events.UnityEvent<double>
+    {
+        public DoubleEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"DoubleGameEvent.asset", menuName = @"SOSXR/SO Architecture/Game Events/Advanced/double", order = 130)] public sealed class DoubleGameEvent : ScriptableObjectArchitecture.GameEventBase<double>
+    {
+        public DoubleGameEvent() {}
+    }
+
+    [UnityEngine.AddComponentMenu(@"SOSXR/SO Architecture/Event Listeners/double Event Listener")] public sealed class DoubleGameEventListener : ScriptableObjectArchitecture.BaseGameEventListener<double, DoubleGameEvent, DoubleUnityEvent>
+    {
+        public DoubleGameEventListener() {}
+    }
+
+    public sealed class DoubleReference : ScriptableObjectArchitecture.BaseReference<double, DoubleVariable>
+    {
+        public DoubleReference() {}
+        public DoubleReference(double value) {}
+    }
+
+    public sealed class DoubleUnityEvent : UnityEngine.Events.UnityEvent<double>
+    {
+        public DoubleUnityEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"DoubleVariable.asset", menuName = @"SOSXR/SO Architecture/Variables/Advanced/double", order = 131)] public class DoubleVariable : ScriptableObjectArchitecture.BaseVariable<double, DoubleEvent>
+    {
+        public override bool Clampable { get; }
+        public DoubleVariable() {}
+        protected override double ClampValue(double value);
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"FloatCollection.asset", menuName = @"SOSXR/SO Architecture/Collections/float", order = 126)] public class FloatCollection : ScriptableObjectArchitecture.Collection<float>
+    {
+        public FloatCollection() {}
+    }
+
+    public class FloatEvent : UnityEngine.Events.UnityEvent<float>
+    {
+        public FloatEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"FloatGameEvent.asset", menuName = @"SOSXR/SO Architecture/Game Events/float", order = 125)] public sealed class FloatGameEvent : ScriptableObjectArchitecture.GameEventBase<float>
+    {
+        public FloatGameEvent() {}
+    }
+
+    [UnityEngine.AddComponentMenu(@"SOSXR/SO Architecture/Event Listeners/float Event Listener")] public sealed class FloatGameEventListener : ScriptableObjectArchitecture.BaseGameEventListener<float, FloatGameEvent, FloatUnityEvent>
+    {
+        public FloatGameEventListener() {}
+    }
+
+    public sealed class FloatReference : ScriptableObjectArchitecture.BaseReference<float, FloatVariable>
+    {
+        public FloatReference() {}
+        public FloatReference(float value) {}
+    }
+
+    public sealed class FloatUnityEvent : UnityEngine.Events.UnityEvent<float>
+    {
+        public FloatUnityEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"FloatVariable.asset", menuName = @"SOSXR/SO Architecture/Variables/float", order = 126)] public class FloatVariable : ScriptableObjectArchitecture.BaseVariable<float, FloatEvent>
+    {
+        public override bool Clampable { get; }
+        public FloatVariable() {}
+        protected override bool AreValuesEqual(float a, float b);
+        protected override float ClampValue(float value);
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"GameEvent.asset", menuName = @"SOSXR/SO Architecture/Game Events/Game Event", order = 121)] public sealed class GameEvent : GameEventBase
+    {
+        public GameEvent() {}
+    }
+
+    public abstract class GameEventBase : SOArchitectureBaseObject, IGameEvent, IStackTraceObject
+    {
+        protected readonly System.Collections.Generic.List<System.Action> _actions = new();
+        protected readonly System.Collections.Generic.List<IGameEventListener> _listeners = new();
+        public System.Collections.Generic.List<StackTraceEntry> StackTraces { get; }
+        protected GameEventBase() {}
+        public void AddListener(IGameEventListener listener);
+        public void AddListener(System.Action action);
+        public void AddStackTrace();
+        public void AddStackTrace(object value);
+        public virtual void Raise();
+        public virtual void RemoveAll();
+        public void RemoveListener(IGameEventListener listener);
+        public void RemoveListener(System.Action action);
+    }
+
+    public abstract class GameEventBase<T> : GameEventBase, IStackTraceObject, ScriptableObjectArchitecture.IGameEvent<T>
+    {
+        [UnityEngine.SerializeField] protected T _debugValue;
+        protected GameEventBase() {}
+        public void AddListener(ScriptableObjectArchitecture.IGameEventListener<T> listener);
+        public void AddListener(System.Action<T> action);
+        public void Raise(T value);
+        public void RemoveListener(ScriptableObjectArchitecture.IGameEventListener<T> listener);
+        public void RemoveListener(System.Action<T> action);
+        public override string ToString();
+    }
+
+    [UnityEngine.AddComponentMenu(@"SOSXR/SO Architecture/Event Listeners/Game Event Listener")] [UnityEngine.ExecuteInEditMode] public sealed class GameEventListener : ScriptableObjectArchitecture.BaseGameEventListener<GameEventBase, UnityEngine.Events.UnityEvent>
+    {
+        public GameEventListener() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"GameObjectCollection.asset", menuName = @"SOSXR/SO Architecture/Collections/GameObject", order = 123)] public class GameObjectCollection : ScriptableObjectArchitecture.Collection<UnityEngine.GameObject>
+    {
+        public GameObjectCollection() {}
+    }
+
+    public class GameObjectEvent : UnityEngine.Events.UnityEvent<UnityEngine.GameObject>
+    {
+        public GameObjectEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"GameObjectGameEvent.asset", menuName = @"SOSXR/SO Architecture/Game Events/GameObject", order = 120)] public sealed class GameObjectGameEvent : ScriptableObjectArchitecture.GameEventBase<UnityEngine.GameObject>
+    {
+        public GameObjectGameEvent() {}
+    }
+
+    [UnityEngine.AddComponentMenu(@"SOSXR/SO Architecture/Event Listeners/GameObject Event Listener")] public sealed class GameObjectGameEventListener : ScriptableObjectArchitecture.BaseGameEventListener<UnityEngine.GameObject, GameObjectGameEvent, GameObjectUnityEvent>
+    {
+        public GameObjectGameEventListener() {}
+    }
+
+    public sealed class GameObjectReference : ScriptableObjectArchitecture.BaseReference<UnityEngine.GameObject, GameObjectVariable>
+    {
+        public GameObjectReference() {}
+        public GameObjectReference(UnityEngine.GameObject value) {}
+    }
+
+    public sealed class GameObjectUnityEvent : UnityEngine.Events.UnityEvent<UnityEngine.GameObject>
+    {
+        public GameObjectUnityEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"GameObjectVariable.asset", menuName = @"SOSXR/SO Architecture/Variables/GameObject", order = 123)] public sealed class GameObjectVariable : ScriptableObjectArchitecture.BaseVariable<UnityEngine.GameObject, GameObjectEvent>
+    {
+        public GameObjectVariable() {}
+    }
+
+    public interface IGameEvent
+    {
+        public void AddListener(IGameEventListener listener);
+        public void Raise();
+        public void RemoveAll();
+        public void RemoveListener(IGameEventListener listener);
+    }
+
+    public interface IGameEvent<T>
+    {
+        public void AddListener(ScriptableObjectArchitecture.IGameEventListener<T> listener);
+        public void Raise(T value);
+        public void RemoveAll();
+        public void RemoveListener(ScriptableObjectArchitecture.IGameEventListener<T> listener);
+    }
+
+    public interface IGameEventListener
+    {
+        public void OnEventRaised();
+    }
+
+    public interface IGameEventListener<T>
+    {
+        public void OnEventRaised(T value);
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"IntCollection.asset", menuName = @"SOSXR/SO Architecture/Collections/int", order = 127)] public class IntCollection : ScriptableObjectArchitecture.Collection<int>
+    {
+        public IntCollection() {}
+    }
+
+    public class IntEvent : UnityEngine.Events.UnityEvent<int>
+    {
+        public IntEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"IntGameEvent.asset", menuName = @"SOSXR/SO Architecture/Game Events/int", order = 126)] public sealed class IntGameEvent : ScriptableObjectArchitecture.GameEventBase<int>
+    {
+        public IntGameEvent() {}
+    }
+
+    [UnityEngine.AddComponentMenu(@"SOSXR/SO Architecture/Event Listeners/int Event Listener")] public sealed class IntGameEventListener : ScriptableObjectArchitecture.BaseGameEventListener<int, IntGameEvent, IntUnityEvent>
+    {
+        public IntGameEventListener() {}
+    }
+
+    public sealed class IntReference : ScriptableObjectArchitecture.BaseReference<int, IntVariable>
+    {
+        public IntReference() {}
+        public IntReference(int value) {}
+    }
+
+    public sealed class IntUnityEvent : UnityEngine.Events.UnityEvent<int>
+    {
+        public IntUnityEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"IntVariable.asset", menuName = @"SOSXR/SO Architecture/Variables/int", order = 127)] public class IntVariable : ScriptableObjectArchitecture.BaseVariable<int, IntEvent>
+    {
+        public override bool Clampable { get; }
+        public IntVariable() {}
+        protected override int ClampValue(int value);
+    }
+
+    public interface IStackTraceObject
+    {
+        public System.Collections.Generic.List<StackTraceEntry> StackTraces { get; }
+        public void AddStackTrace();
+        public void AddStackTrace(object value);
+    }
+
+    public class LayerMaskEvent : UnityEngine.Events.UnityEvent<UnityEngine.LayerMask>
+    {
+        public LayerMaskEvent() {}
+    }
+
+    public sealed class LayerMaskReference : ScriptableObjectArchitecture.BaseReference<UnityEngine.LayerMask, LayerMaskVariable>
+    {
+        public LayerMaskReference() {}
+        public LayerMaskReference(UnityEngine.LayerMask value) {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"LayerMaskVariable.asset", menuName = @"SOSXR/SO Architecture/Variables/Advanced/LayerMask", order = 120)] public class LayerMaskVariable : ScriptableObjectArchitecture.BaseVariable<UnityEngine.LayerMask, LayerMaskEvent>
+    {
+        public LayerMaskVariable() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"LongCollection.asset", menuName = @"SOSXR/SO Architecture/Collections/Advanced/long", order = 132)] public class LongCollection : ScriptableObjectArchitecture.Collection<long>
+    {
+        public LongCollection() {}
+    }
+
+    public class LongEvent : UnityEngine.Events.UnityEvent<long>
+    {
+        public LongEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"LongGameEvent.asset", menuName = @"SOSXR/SO Architecture/Game Events/Advanced/long", order = 131)] public sealed class LongGameEvent : ScriptableObjectArchitecture.GameEventBase<long>
+    {
+        public LongGameEvent() {}
+    }
+
+    [UnityEngine.AddComponentMenu(@"SOSXR/SO Architecture/Event Listeners/long Event Listener")] public sealed class LongGameEventListener : ScriptableObjectArchitecture.BaseGameEventListener<long, LongGameEvent, LongUnityEvent>
+    {
+        public LongGameEventListener() {}
+    }
+
+    public sealed class LongReference : ScriptableObjectArchitecture.BaseReference<long, LongVariable>
+    {
+        public LongReference() {}
+        public LongReference(long value) {}
+    }
+
+    public sealed class LongUnityEvent : UnityEngine.Events.UnityEvent<long>
+    {
+        public LongUnityEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"LongVariable.asset", menuName = @"SOSXR/SO Architecture/Variables/Advanced/long", order = 132)] public class LongVariable : ScriptableObjectArchitecture.BaseVariable<long, LongEvent>
+    {
+        public override bool Clampable { get; }
+        public LongVariable() {}
+        protected override long ClampValue(long value);
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"ObjectCollection.asset", menuName = @"SOSXR/SO Architecture/Collections/Object", order = 124)] public class ObjectCollection : ScriptableObjectArchitecture.Collection<UnityEngine.Object>
+    {
+        public ObjectCollection() {}
+    }
+
+    public class ObjectEvent : UnityEngine.Events.UnityEvent<UnityEngine.Object>
+    {
+        public ObjectEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"ObjectGameEvent.asset", menuName = @"SOSXR/SO Architecture/Game Events/Object", order = 123)] public class ObjectGameEvent : ScriptableObjectArchitecture.GameEventBase<UnityEngine.Object>
+    {
+        public ObjectGameEvent() {}
+    }
+
+    [UnityEngine.AddComponentMenu(@"SOSXR/SO Architecture/Event Listeners/Object Event Listener")] public class ObjectGameEventListener : ScriptableObjectArchitecture.BaseGameEventListener<UnityEngine.Object, ObjectGameEvent, ObjectUnityEvent>
+    {
+        public ObjectGameEventListener() {}
+    }
+
+    public class ObjectReference : ScriptableObjectArchitecture.BaseReference<UnityEngine.Object, ObjectVariable>
+    {
+        public ObjectReference() {}
+        public ObjectReference(UnityEngine.Object value) {}
+    }
+
+    public class ObjectUnityEvent : UnityEngine.Events.UnityEvent<UnityEngine.Object>
+    {
+        public ObjectUnityEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"ObjectVariable.asset", menuName = @"SOSXR/SO Architecture/Variables/Object", order = 124)] public class ObjectVariable : ScriptableObjectArchitecture.BaseVariable<UnityEngine.Object, ObjectEvent>
+    {
+        public ObjectVariable() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"QuaternionCollection.asset", menuName = @"SOSXR/SO Architecture/Collections/Structs/Quaternion", order = 136)] public class QuaternionCollection : ScriptableObjectArchitecture.Collection<UnityEngine.Quaternion>
+    {
+        public QuaternionCollection() {}
+    }
+
+    public class QuaternionEvent : UnityEngine.Events.UnityEvent<UnityEngine.Quaternion>
+    {
+        public QuaternionEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"QuaternionGameEvent.asset", menuName = @"SOSXR/SO Architecture/Game Events/Structs/Quaternion", order = 135)] public sealed class QuaternionGameEvent : ScriptableObjectArchitecture.GameEventBase<UnityEngine.Quaternion>
+    {
+        public QuaternionGameEvent() {}
+    }
+
+    [UnityEngine.AddComponentMenu(@"SOSXR/SO Architecture/Event Listeners/Quaternion Event Listener")] public sealed class QuaternionGameEventListener : ScriptableObjectArchitecture.BaseGameEventListener<UnityEngine.Quaternion, QuaternionGameEvent, QuaternionUnityEvent>
+    {
+        public QuaternionGameEventListener() {}
+    }
+
+    public sealed class QuaternionReference : ScriptableObjectArchitecture.BaseReference<UnityEngine.Quaternion, QuaternionVariable>
+    {
+        public QuaternionReference() {}
+        public QuaternionReference(UnityEngine.Quaternion value) {}
+    }
+
+    public sealed class QuaternionUnityEvent : UnityEngine.Events.UnityEvent<UnityEngine.Quaternion>
+    {
+        public QuaternionUnityEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"QuaternionVariable.asset", menuName = @"SOSXR/SO Architecture/Variables/Structs/Quaternion", order = 136)] public sealed class QuaternionVariable : ScriptableObjectArchitecture.BaseVariable<UnityEngine.Quaternion, QuaternionEvent>
+    {
+        public QuaternionVariable() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"SByteCollection.asset", menuName = @"SOSXR/SO Architecture/Collections/Advanced/sbyte", order = 138)] public class SByteCollection : ScriptableObjectArchitecture.Collection<sbyte>
+    {
+        public SByteCollection() {}
+    }
+
+    public class SByteEvent : UnityEngine.Events.UnityEvent<sbyte>
+    {
+        public SByteEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"SignedByteGameEvent.asset", menuName = @"SOSXR/SO Architecture/Game Events/Advanced/sbyte", order = 137)] public sealed class SByteGameEvent : ScriptableObjectArchitecture.GameEventBase<sbyte>
+    {
+        public SByteGameEvent() {}
+    }
+
+    [UnityEngine.AddComponentMenu(@"SOSXR/SO Architecture/Event Listeners/sbyte Event Listener")] public sealed class SByteGameEventListener : ScriptableObjectArchitecture.BaseGameEventListener<sbyte, SByteGameEvent, SByteUnityEvent>
+    {
+        public SByteGameEventListener() {}
+    }
+
+    public sealed class SByteReference : ScriptableObjectArchitecture.BaseReference<sbyte, SByteVariable>
+    {
+        public SByteReference() {}
+        public SByteReference(sbyte value) {}
+    }
+
+    public sealed class SByteUnityEvent : UnityEngine.Events.UnityEvent<sbyte>
+    {
+        public SByteUnityEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"SByteVariable.asset", menuName = @"SOSXR/SO Architecture/Variables/Advanced/sbyte", order = 138)] public class SByteVariable : ScriptableObjectArchitecture.BaseVariable<sbyte, SByteEvent>
+    {
+        public override bool Clampable { get; }
+        public SByteVariable() {}
+        protected override sbyte ClampValue(sbyte value);
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"SceneCollection.asset", menuName = @"SOSXR/SO Architecture/Collections/Advanced/Scene", order = 120)] public class SceneCollection : ScriptableObjectArchitecture.Collection<SceneInfo>
+    {
+        public SceneCollection() {}
+    }
+
+    [MultiLine] public sealed class SceneInfo : UnityEngine.ISerializationCallbackReceiver
+    {
+        public bool IsSceneEnabled { get; }
+        public bool IsSceneInBuildSettings { get; }
+        public int SceneIndex { get; }
+        public string SceneName { get; }
+        public SceneInfo() {}
+        public void OnAfterDeserialize();
+        public void OnBeforeSerialize();
+    }
+
+    public class SceneInfoEvent : UnityEngine.Events.UnityEvent<SceneInfo>
+    {
+        public SceneInfoEvent() {}
+    }
+
+    public sealed class SceneReference : ScriptableObjectArchitecture.BaseReference<SceneInfo, SceneVariable>
+    {
+        public SceneReference() {}
+        public SceneReference(SceneInfo value) {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"SceneVariable.asset", menuName = @"SOSXR/SO Architecture/Variables/Advanced/Scene", order = 120)] public sealed class SceneVariable : ScriptableObjectArchitecture.BaseVariable<SceneInfo, SceneInfoEvent>
+    {
+        public override bool ReadOnly { get; }
+        public override SceneInfo Value { get; }
+        public SceneVariable() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"ShortCollection.asset", menuName = @"SOSXR/SO Architecture/Collections/Advanced/short", order = 137)] public class ShortCollection : ScriptableObjectArchitecture.Collection<short>
+    {
+        public ShortCollection() {}
+    }
+
+    public class ShortEvent : UnityEngine.Events.UnityEvent<short>
+    {
+        public ShortEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"ShortGameEvent.asset", menuName = @"SOSXR/SO Architecture/Game Events/Advanced/short", order = 136)] public sealed class ShortGameEvent : ScriptableObjectArchitecture.GameEventBase<short>
+    {
+        public ShortGameEvent() {}
+    }
+
+    [UnityEngine.AddComponentMenu(@"SOSXR/SO Architecture/Event Listeners/short Event Listener")] public sealed class ShortGameEventListener : ScriptableObjectArchitecture.BaseGameEventListener<short, ShortGameEvent, ShortUnityEvent>
+    {
+        public ShortGameEventListener() {}
+    }
+
+    public sealed class ShortReference : ScriptableObjectArchitecture.BaseReference<short, ShortVariable>
+    {
+        public ShortReference() {}
+        public ShortReference(short value) {}
+    }
+
+    public sealed class ShortUnityEvent : UnityEngine.Events.UnityEvent<short>
+    {
+        public ShortUnityEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"ShortVariable.asset", menuName = @"SOSXR/SO Architecture/Variables/Advanced/short", order = 137)] public class ShortVariable : ScriptableObjectArchitecture.BaseVariable<short, ShortEvent>
+    {
+        public override bool Clampable { get; }
+        public ShortVariable() {}
+        protected override short ClampValue(short value);
+    }
+
+    public class SOArchitecture_Settings : UnityEngine.ScriptableObject
+    {
+        public bool CodeGenerationAllowOverwrite { get; set; }
+        public string CodeGenerationTargetDirectory { get; set; }
+        public int DefaultCreateAssetMenuOrder { get; set; }
+        public static SOArchitecture_Settings Instance { get; }
+        public SOArchitecture_Settings() {}
+    }
+
+    public static class SOArchitecture_Utility
+    {
+        public const string ADVANCED_GAME_EVENT = @"SOSXR/SO Architecture/Game Events/Advanced/";
+        public const string ADVANCED_VARIABLE_COLLECTION = @"SOSXR/SO Architecture/Collections/Advanced/";
+        public const string ADVANCED_VARIABLE_SUBMENU = @"SOSXR/SO Architecture/Variables/Advanced/";
+        public const int ASSET_MENU_ORDER_COLLECTIONS = 123;
+        public const int ASSET_MENU_ORDER_EVENTS = 122;
+        public const int ASSET_MENU_ORDER_VARIABLES = 121;
+        public const string COLLECTION_SUBMENU = @"SOSXR/SO Architecture/Collections/";
+        public const string EVENT_LISTENER_SUBMENU = @"SOSXR/SO Architecture/Event Listeners/";
+        public const string GAME_EVENT = @"SOSXR/SO Architecture/Game Events/";
+        public const string ROOT_MENU = @"SOSXR/SO Architecture/";
+        public const string VARIABLE_SUBMENU = @"SOSXR/SO Architecture/Variables/";
+    }
+
+    public abstract class SOArchitectureBaseMonobehaviour : UnityEngine.MonoBehaviour
+    {
+        protected SOArchitectureBaseMonobehaviour() {}
+    }
+
+    public abstract class SOArchitectureBaseObject : UnityEngine.ScriptableObject
+    {
+        protected SOArchitectureBaseObject() {}
+    }
+
+    public static class SOArchitecturePreferences
+    {
+        public static bool AreGizmosEnabled { get; }
+        public static bool IsDebugEnabled { get; }
+    }
+
+    public class StackTraceEntry : System.IEquatable<StackTraceEntry>
+    {
+        public static StackTraceEntry Create();
+        public static StackTraceEntry Create(object obj);
+        public bool Equals(StackTraceEntry other);
+        public override bool Equals(object obj);
+        public override int GetHashCode();
+        public static string op_Implicit(StackTraceEntry trace);
+        public override string ToString();
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"StringCollection.asset", menuName = @"SOSXR/SO Architecture/Collections/string", order = 125)] public class StringCollection : ScriptableObjectArchitecture.Collection<string>
+    {
+        public StringCollection() {}
+    }
+
+    public class StringEvent : UnityEngine.Events.UnityEvent<string>
+    {
+        public StringEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"StringGameEvent.asset", menuName = @"SOSXR/SO Architecture/Game Events/string", order = 124)] public sealed class StringGameEvent : ScriptableObjectArchitecture.GameEventBase<string>
+    {
+        public StringGameEvent() {}
+    }
+
+    [UnityEngine.AddComponentMenu(@"SOSXR/SO Architecture/Event Listeners/string Event Listener")] public sealed class StringGameEventListener : ScriptableObjectArchitecture.BaseGameEventListener<string, StringGameEvent, StringUnityEvent>
+    {
+        public StringGameEventListener() {}
+    }
+
+    public sealed class StringReference : ScriptableObjectArchitecture.BaseReference<string, StringVariable>
+    {
+        public StringReference() {}
+        public StringReference(string value) {}
+    }
+
+    public sealed class StringUnityEvent : UnityEngine.Events.UnityEvent<string>
+    {
+        public StringUnityEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"StringVariable.asset", menuName = @"SOSXR/SO Architecture/Variables/string", order = 125)] public sealed class StringVariable : ScriptableObjectArchitecture.BaseVariable<string, StringEvent>
+    {
+        public StringVariable() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"UIntCollection.asset", menuName = @"SOSXR/SO Architecture/Collections/Advanced/uint", order = 139)] public class UIntCollection : ScriptableObjectArchitecture.Collection<uint>
+    {
+        public UIntCollection() {}
+    }
+
+    public class UIntEvent : UnityEngine.Events.UnityEvent<uint>
+    {
+        public UIntEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"UnsignedIntGameEvent.asset", menuName = @"SOSXR/SO Architecture/Game Events/Advanced/uint", order = 138)] public sealed class UIntGameEvent : ScriptableObjectArchitecture.GameEventBase<uint>
+    {
+        public UIntGameEvent() {}
+    }
+
+    [UnityEngine.AddComponentMenu(@"SOSXR/SO Architecture/Event Listeners/uint Event Listener")] public sealed class UIntGameEventListener : ScriptableObjectArchitecture.BaseGameEventListener<uint, UIntGameEvent, UIntUnityEvent>
+    {
+        public UIntGameEventListener() {}
+    }
+
+    public sealed class UIntReference : ScriptableObjectArchitecture.BaseReference<uint, UIntVariable>
+    {
+        public UIntReference() {}
+        public UIntReference(uint value) {}
+    }
+
+    public sealed class UIntUnityEvent : UnityEngine.Events.UnityEvent<uint>
+    {
+        public UIntUnityEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"UnsignedIntVariable.asset", menuName = @"SOSXR/SO Architecture/Variables/Advanced/uint", order = 139)] public class UIntVariable : ScriptableObjectArchitecture.BaseVariable<uint, UIntEvent>
+    {
+        public override bool Clampable { get; }
+        public UIntVariable() {}
+        protected override uint ClampValue(uint value);
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"ULongCollection.asset", menuName = @"SOSXR/SO Architecture/Collections/Advanced/ulong", order = 140)] public class ULongCollection : ScriptableObjectArchitecture.Collection<ulong>
+    {
+        public ULongCollection() {}
+    }
+
+    public class ULongEvent : UnityEngine.Events.UnityEvent<ulong>
+    {
+        public ULongEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"UnsignedLongGameEvent.asset", menuName = @"SOSXR/SO Architecture/Game Events/Advanced/ulong", order = 139)] public sealed class ULongGameEvent : ScriptableObjectArchitecture.GameEventBase<ulong>
+    {
+        public ULongGameEvent() {}
+    }
+
+    [UnityEngine.AddComponentMenu(@"SOSXR/SO Architecture/Event Listeners/ulong Event Listener")] public sealed class ULongGameEventListener : ScriptableObjectArchitecture.BaseGameEventListener<ulong, ULongGameEvent, ULongUnityEvent>
+    {
+        public ULongGameEventListener() {}
+    }
+
+    public sealed class ULongReference : ScriptableObjectArchitecture.BaseReference<ulong, ULongVariable>
+    {
+        public ULongReference() {}
+        public ULongReference(ulong value) {}
+    }
+
+    public sealed class ULongUnityEvent : UnityEngine.Events.UnityEvent<ulong>
+    {
+        public ULongUnityEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"UnsignedLongVariable.asset", menuName = @"SOSXR/SO Architecture/Variables/Advanced/ulong", order = 140)] public class ULongVariable : ScriptableObjectArchitecture.BaseVariable<ulong, ULongEvent>
+    {
+        public override bool Clampable { get; }
+        public ULongVariable() {}
+        protected override ulong ClampValue(ulong value);
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"UShortCollection.asset", menuName = @"SOSXR/SO Architecture/Collections/Advanced/ushort", order = 141)] public class UShortCollection : ScriptableObjectArchitecture.Collection<ushort>
+    {
+        public UShortCollection() {}
+    }
+
+    public class UShortEvent : UnityEngine.Events.UnityEvent<ushort>
+    {
+        public UShortEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"UnsignedShortGameEvent.asset", menuName = @"SOSXR/SO Architecture/Game Events/Advanced/ushort", order = 140)] public sealed class UShortGameEvent : ScriptableObjectArchitecture.GameEventBase<ushort>
+    {
+        public UShortGameEvent() {}
+    }
+
+    [UnityEngine.AddComponentMenu(@"SOSXR/SO Architecture/Event Listeners/ushort Event Listener")] public sealed class UShortGameEventListener : ScriptableObjectArchitecture.BaseGameEventListener<ushort, UShortGameEvent, UShortUnityEvent>
+    {
+        public UShortGameEventListener() {}
+    }
+
+    public sealed class UShortReference : ScriptableObjectArchitecture.BaseReference<ushort, UShortVariable>
+    {
+        public UShortReference() {}
+        public UShortReference(ushort value) {}
+    }
+
+    public sealed class UShortUnityEvent : UnityEngine.Events.UnityEvent<ushort>
+    {
+        public UShortUnityEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"UnsignedShortVariable.asset", menuName = @"SOSXR/SO Architecture/Variables/Advanced/ushort", order = 141)] public class UShortVariable : ScriptableObjectArchitecture.BaseVariable<ushort, UShortEvent>
+    {
+        public override bool Clampable { get; }
+        public UShortVariable() {}
+        protected override ushort ClampValue(ushort value);
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"Vector2Collection.asset", menuName = @"SOSXR/SO Architecture/Collections/Structs/Vector2", order = 133)] public class Vector2Collection : ScriptableObjectArchitecture.Collection<UnityEngine.Vector2>
+    {
+        public Vector2Collection() {}
+    }
+
+    public class Vector2Event : UnityEngine.Events.UnityEvent<UnityEngine.Vector2>
+    {
+        public Vector2Event() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"Vector2GameEvent.asset", menuName = @"SOSXR/SO Architecture/Game Events/Structs/Vector2", order = 132)] public sealed class Vector2GameEvent : ScriptableObjectArchitecture.GameEventBase<UnityEngine.Vector2>
+    {
+        public Vector2GameEvent() {}
+    }
+
+    [UnityEngine.AddComponentMenu(@"SOSXR/SO Architecture/Event Listeners/Vector2 Event Listener")] public sealed class Vector2GameEventListener : ScriptableObjectArchitecture.BaseGameEventListener<UnityEngine.Vector2, Vector2GameEvent, Vector2UnityEvent>
+    {
+        public Vector2GameEventListener() {}
+    }
+
+    public sealed class Vector2Reference : ScriptableObjectArchitecture.BaseReference<UnityEngine.Vector2, Vector2Variable>
+    {
+        public Vector2Reference() {}
+        public Vector2Reference(UnityEngine.Vector2 value) {}
+    }
+
+    public sealed class Vector2UnityEvent : UnityEngine.Events.UnityEvent<UnityEngine.Vector2>
+    {
+        public Vector2UnityEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"Vector2Variable.asset", menuName = @"SOSXR/SO Architecture/Variables/Structs/Vector2", order = 133)] public sealed class Vector2Variable : ScriptableObjectArchitecture.BaseVariable<UnityEngine.Vector2, Vector2Event>
+    {
+        public Vector2Variable() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"Vector3Collection.asset", menuName = @"SOSXR/SO Architecture/Collections/Structs/Vector3", order = 134)] public class Vector3Collection : ScriptableObjectArchitecture.Collection<UnityEngine.Vector3>
+    {
+        public Vector3Collection() {}
+    }
+
+    public class Vector3Event : UnityEngine.Events.UnityEvent<UnityEngine.Vector3>
+    {
+        public Vector3Event() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"Vector3GameEvent.asset", menuName = @"SOSXR/SO Architecture/Game Events/Structs/Vector3", order = 133)] public sealed class Vector3GameEvent : ScriptableObjectArchitecture.GameEventBase<UnityEngine.Vector3>
+    {
+        public Vector3GameEvent() {}
+    }
+
+    [UnityEngine.AddComponentMenu(@"SOSXR/SO Architecture/Event Listeners/Vector3 Event Listener")] public sealed class Vector3GameEventListener : ScriptableObjectArchitecture.BaseGameEventListener<UnityEngine.Vector3, Vector3GameEvent, Vector3UnityEvent>
+    {
+        public Vector3GameEventListener() {}
+    }
+
+    public sealed class Vector3Reference : ScriptableObjectArchitecture.BaseReference<UnityEngine.Vector3, Vector3Variable>
+    {
+        public Vector3Reference() {}
+        public Vector3Reference(UnityEngine.Vector3 value) {}
+    }
+
+    public sealed class Vector3UnityEvent : UnityEngine.Events.UnityEvent<UnityEngine.Vector3>
+    {
+        public Vector3UnityEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"Vector3Variable.asset", menuName = @"SOSXR/SO Architecture/Variables/Structs/Vector3", order = 134)] public sealed class Vector3Variable : ScriptableObjectArchitecture.BaseVariable<UnityEngine.Vector3, Vector3Event>
+    {
+        public Vector3Variable() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"Vector4Collection.asset", menuName = @"SOSXR/SO Architecture/Collections/Structs/Vector4", order = 135)] public class Vector4Collection : ScriptableObjectArchitecture.Collection<UnityEngine.Vector4>
+    {
+        public Vector4Collection() {}
+    }
+
+    public class Vector4Event : UnityEngine.Events.UnityEvent<UnityEngine.Vector4>
+    {
+        public Vector4Event() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"Vector4GameEvent.asset", menuName = @"SOSXR/SO Architecture/Game Events/Structs/Vector4", order = 134)] public sealed class Vector4GameEvent : ScriptableObjectArchitecture.GameEventBase<UnityEngine.Vector4>
+    {
+        public Vector4GameEvent() {}
+    }
+
+    [UnityEngine.AddComponentMenu(@"SOSXR/SO Architecture/Event Listeners/Vector4 Event Listener")] public sealed class Vector4GameEventListener : ScriptableObjectArchitecture.BaseGameEventListener<UnityEngine.Vector4, Vector4GameEvent, Vector4UnityEvent>
+    {
+        public Vector4GameEventListener() {}
+    }
+
+    public sealed class Vector4Reference : ScriptableObjectArchitecture.BaseReference<UnityEngine.Vector4, Vector4Variable>
+    {
+        public Vector4Reference() {}
+        public Vector4Reference(UnityEngine.Vector4 value) {}
+    }
+
+    public sealed class Vector4UnityEvent : UnityEngine.Events.UnityEvent<UnityEngine.Vector4>
+    {
+        public Vector4UnityEvent() {}
+    }
+
+    [UnityEngine.CreateAssetMenu(fileName = @"Vector4Variable.asset", menuName = @"SOSXR/SO Architecture/Variables/Structs/Vector4", order = 135)] public sealed class Vector4Variable : ScriptableObjectArchitecture.BaseVariable<UnityEngine.Vector4, Vector4Event>
+    {
+        public Vector4Variable() {}
+    }
+}
+
+namespace ScriptableObjectArchitecture.SOSXR
+{
+    public enum Axis
+    {
+        X = 0,
+        Y = 1,
+        Z = 2,
+    }
+
+    public class FloatToIntVariable : UnityEngine.MonoBehaviour
+    {
+        public FloatToIntVariable() {}
+        [UnityEngine.ContextMenu(@"FloatToInt")] public void FloatToInt(float input);
+    }
+
+    public class FloatToVector3Variable : UnityEngine.MonoBehaviour
+    {
+        public FloatToVector3Variable() {}
+        [UnityEngine.ContextMenu(@"FloatToVector3")] public void FloatToVector3(float input);
+    }
+
+    [UnityEngine.RequireComponent(typeof(UnityEngine.UI.Slider))] public class IntVariableToTMPSlider : UnityEngine.MonoBehaviour
+    {
+        public IntVariableToTMPSlider() {}
+    }
+
+    public class VariablePosition : UnityEngine.MonoBehaviour
+    {
+        public VariablePosition() {}
+    }
+
+    [UnityEngine.RequireComponent(typeof(UnityEngine.UI.Slider))] public class Vector3VariableToTMPSlider : UnityEngine.MonoBehaviour
+    {
+        public Vector3VariableToTMPSlider() {}
+    }
+}

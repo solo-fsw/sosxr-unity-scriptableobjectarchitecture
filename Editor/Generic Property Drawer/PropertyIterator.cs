@@ -1,4 +1,4 @@
-﻿using UnityEditor;
+using UnityEditor;
 
 
 namespace ScriptableObjectArchitecture.Editor
@@ -8,7 +8,6 @@ namespace ScriptableObjectArchitecture.Editor
         protected readonly SerializedProperty iterator;
         protected readonly SerializedProperty endProperty;
 
-        private bool consumeChildren;
         private int parentDepth;
 
 
@@ -57,16 +56,6 @@ namespace ScriptableObjectArchitecture.Editor
 
         public virtual void End()
         {
-        }
-
-
-        private void UpdateState(SerializedProperty property)
-        {
-            if (IsSingleLine(iterator))
-            {
-                parentDepth = iterator.depth;
-                consumeChildren = true;
-            }
         }
 
 
