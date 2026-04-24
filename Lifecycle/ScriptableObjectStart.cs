@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 
@@ -10,12 +9,21 @@ using UnityEngine;
 
 public class ScriptableObjectStart : MonoBehaviour
 {
-    private IEnumerable<ISOStart> _sos;
+    private List<ISOStart> _sos = new List<ISOStart>();
 
 
     private void Start()
     {
-        _sos = Resources.FindObjectsOfTypeAll<ScriptableObject>().OfType<ISOStart>();
+        var allSOs = Resources.FindObjectsOfTypeAll<ScriptableObject>();
+        _sos.Clear();
+
+        foreach (var so in allSOs)
+        {
+            if (so is ISOStart isoStart)
+            {
+                _sos.Add(isoStart);
+            }
+        }
 
         foreach (var so in _sos)
         {

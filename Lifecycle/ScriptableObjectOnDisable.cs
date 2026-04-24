@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 
@@ -10,12 +9,21 @@ using UnityEngine;
 
 public class ScriptableObjectOnDisable : MonoBehaviour
 {
-    private IEnumerable<ISOOnDisable> _sos;
+    private List<ISOOnDisable> _sos = new List<ISOOnDisable>();
 
 
     private void Awake()
     {
-        _sos = Resources.FindObjectsOfTypeAll<ScriptableObject>().OfType<ISOOnDisable>();
+        var allSOs = Resources.FindObjectsOfTypeAll<ScriptableObject>();
+        _sos.Clear();
+
+        foreach (var so in allSOs)
+        {
+            if (so is ISOOnDisable isoOnDisable)
+            {
+                _sos.Add(isoOnDisable);
+            }
+        }
     }
 
 

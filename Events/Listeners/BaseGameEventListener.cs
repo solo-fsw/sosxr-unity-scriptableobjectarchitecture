@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 #if UNITY_EDITOR
@@ -158,6 +158,8 @@ namespace ScriptableObjectArchitecture
         [SerializeField] private Color _debugColor = Color.cyan;
         #pragma warning restore
 
+        private string _cachedGameObjectName;
+
         /// <summary>Ordered list of stack trace entries recorded each time this listener was notified (most recent first).</summary>
         public List<StackTraceEntry> StackTraces { get; } = new();
 
@@ -200,9 +202,9 @@ namespace ScriptableObjectArchitecture
                     continue;
                 }
 
-                var targetName = gameObject ? gameObject.name : "Null";
+                var targetName = _cachedGameObjectName ?? (_cachedGameObjectName = gameObject ? gameObject.name : "Null");
 
-                var functionName = string.Format("{0} ({1})", targetName, response.GetPersistentMethodName(i));
+                var functionName = $"{targetName} ({response.GetPersistentMethodName(i)})";
 
                 _debugEntries.Add(new DebugEvent(gameObjectTarget, functionName));
             }

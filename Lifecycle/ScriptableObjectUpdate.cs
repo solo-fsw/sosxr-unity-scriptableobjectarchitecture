@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 
@@ -10,12 +9,21 @@ using UnityEngine;
 
 public class ScriptableObjectUpdate : MonoBehaviour
 {
-    private IEnumerable<ISOUpdate> _sos;
+    private List<ISOUpdate> _sos = new List<ISOUpdate>();
 
 
     private void Awake()
     {
-        _sos = Resources.FindObjectsOfTypeAll<ScriptableObject>().OfType<ISOUpdate>();
+        var allSOs = Resources.FindObjectsOfTypeAll<ScriptableObject>();
+        _sos.Clear();
+
+        foreach (var so in allSOs)
+        {
+            if (so is ISOUpdate isoUpdate)
+            {
+                _sos.Add(isoUpdate);
+            }
+        }
     }
 
 
