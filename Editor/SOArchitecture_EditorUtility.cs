@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using UnityEditor;
@@ -25,7 +25,45 @@ namespace ScriptableObjectArchitecture.Editor
         private const float DebugStyleBackgroundAlpha = 0.33f;
 
         private static PropertyDrawerGraph _propertyDrawerGraph;
+        private static bool _propertyDrawerGraphBuildQueued;
         private static readonly BindingFlags _fieldBindingsFlag = BindingFlags.Instance | BindingFlags.NonPublic;
+
+
+        [InitializeOnLoadMethod]
+        private static void InitializePropertyDrawerGraphBuild()
+        {
+            QueuePropertyDrawerGraphBuild();
+        }
+
+
+        private static void QueuePropertyDrawerGraphBuild()
+        {
+            if (_propertyDrawerGraphBuildQueued)
+            {
+                return;
+            }
+
+            _propertyDrawerGraphBuildQueued = true;
+
+            EditorApplication.delayCall += () =>
+            {
+                _propertyDrawerGraphBuildQueued = false;
+
+                if (_propertyDrawerGraph != null)
+                {
+                    return;
+                }
+
+                try
+                {
+                    CreatePropertyDrawerGraph();
+                }
+                catch (System.Exception exception)
+                {
+                    Debug.LogError($"Failed to build PropertyDrawer graph: {exception}");
+                }
+            };
+        }
 
 
         private static void CreatePropertyDrawerGraph()
@@ -42,12 +80,27 @@ namespace ScriptableObjectArchitecture.Editor
             var dataPath = Application.dataPath;
             var libraryPath = dataPath.Substring(0, dataPath.LastIndexOf('/')) + "/Library/ScriptAssemblies";
 
+            if (!Directory.Exists(libraryPath))
+            {
+                return;
+            }
+
             foreach (var file in Directory.GetFiles(libraryPath))
             {
                 if (assemblyNamesToCheck.Contains(Path.GetFileNameWithoutExtension(file)) && Path.GetExtension(file) == ".dll")
                 {
-                    var assembly = Assembly.LoadFrom(file);
-                    _propertyDrawerGraph.CreateGraph(assembly);
+                    try
+                    {
+                        var assembly = Assembly.LoadFrom(file);
+                        if (assembly != null)
+                        {
+                            _propertyDrawerGraph.CreateGraph(assembly);
+                        }
+                    }
+                    catch (System.Exception exception)
+                    {
+                        Debug.LogError($"Failed to load assembly from '{file}': {exception.Message}");
+                    }
                 }
             }
         }
@@ -119,7 +172,8 @@ namespace ScriptableObjectArchitecture.Editor
 
             if (_propertyDrawerGraph == null)
             {
-                CreatePropertyDrawerGraph();
+                QueuePropertyDrawerGraphBuild();
+                return false;
             }
 
             return _propertyDrawerGraph.HasPropertyDrawer(type);
@@ -147,6 +201,7 @@ namespace ScriptableObjectArchitecture.Editor
         private static void OnProjectReloaded()
         {
             _propertyDrawerGraph = null;
+            QueuePropertyDrawerGraphBuild();
         }
 
 
