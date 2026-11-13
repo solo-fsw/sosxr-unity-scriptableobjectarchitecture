@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file. The changel
 
 For earlier versions, please refer to the [original CHANGELOG](https://github.com/DanielEverland/ScriptableObject-Architecture/releases)
 
+## [Unreleased]
+
+### Fixed
+
+- Unity 6.6 analyzer warning UAC0020: the property drawer scan no longer calls `Assembly.LoadFrom` on `Library/ScriptAssemblies`. It reads the assemblies the Editor already loaded. `LoadFrom` also loaded a second copy of each assembly.
+- Unity 6.6 serialization analyzer warning UAC1002: non-generic `BaseReference` is now `[Serializable]`. It has no fields, so serialized data is unchanged.
+
 ## [0.4.0] - 2026-11-13
 
 ### Fixed

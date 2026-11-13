@@ -138,7 +138,7 @@ namespace ScriptableObjectArchitecture
     ///     Non-generic marker base for all <see cref="BaseReference{TBase,TVariable}" /> types.
     ///     Required because Unity's <c>CustomPropertyDrawer</c> attribute cannot target open generic types directly.
     /// </summary>
-
+    [Serializable] // No fields; keeps the serialized type hierarchy complete for the Unity 6.6 analyzer (UAC1002).
     public abstract class BaseReference
     {
     }

@@ -77,30 +77,22 @@ namespace ScriptableObjectArchitecture.Editor
 
             GetAllAssetDefintionNames(assemblyNamesToCheck);
 
-            var dataPath = Application.dataPath;
-            var libraryPath = dataPath.Substring(0, dataPath.LastIndexOf('/')) + "/Library/ScriptAssemblies";
-
-            if (!Directory.Exists(libraryPath))
+            // Use the assemblies the Editor already loaded. Assembly.LoadFrom loaded a second copy from
+            // Library/ScriptAssemblies, which Unity 6.6 flags as unsupported (UAC0020).
+            foreach (var assembly in System.AppDomain.CurrentDomain.GetAssemblies())
             {
-                return;
-            }
-
-            foreach (var file in Directory.GetFiles(libraryPath))
-            {
-                if (assemblyNamesToCheck.Contains(Path.GetFileNameWithoutExtension(file)) && Path.GetExtension(file) == ".dll")
+                if (!assemblyNamesToCheck.Contains(assembly.GetName().Name))
                 {
-                    try
-                    {
-                        var assembly = Assembly.LoadFrom(file);
-                        if (assembly != null)
-                        {
-                            _propertyDrawerGraph.CreateGraph(assembly);
-                        }
-                    }
-                    catch (System.Exception exception)
-                    {
-                        Debug.LogError($"Failed to load assembly from '{file}': {exception.Message}");
-                    }
+                    continue;
+                }
+
+                try
+                {
+                    _propertyDrawerGraph.CreateGraph(assembly);
+                }
+                catch (System.Exception exception)
+                {
+                    Debug.LogError($"Failed to read property drawers from '{assembly.GetName().Name}': {exception.Message}");
                 }
             }
         }
