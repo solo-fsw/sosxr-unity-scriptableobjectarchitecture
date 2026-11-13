@@ -136,7 +136,24 @@ Open **Window → SOSXR → ScriptableObject Architecture → Code Generator**. 
 
 ## Samples
 
-The `Samples~` folder contains example scenes and scripts demonstrating variables, events, and collections in practice. Import via the Package Manager samples tab.
+The `Samples/` folder contains example scenes and scripts demonstrating variables, events, and collections in practice. Import via the Package Manager samples tab.
+
+## Raising events safely
+
+- A listener or action may add or remove listeners while an event is raised.
+- A listener removed during a raise is skipped.
+- A listener added during a raise runs from the next raise on.
+- Listeners run in reverse-registration order.
+
+## Debug stack traces
+
+- Stack traces are recorded only in editor debug mode (`SOArchitecturePreferences.IsDebugEnabled`).
+- Each event and listener keeps at most 100 entries (`StackTraceEntry.MaxEntries`), newest first.
+
+## Tests
+
+- EditMode tests live in `Tests/Editor/` (asmdef `ScriptableObject-Architecture.Tests`).
+- Run them in the Unity Test Runner.
 
 ## Credits
 

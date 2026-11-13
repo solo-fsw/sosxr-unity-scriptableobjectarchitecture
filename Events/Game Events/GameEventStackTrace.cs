@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -14,6 +15,9 @@ namespace ScriptableObjectArchitecture
 
     public class StackTraceEntry : IEquatable<StackTraceEntry>
     {
+        /// <summary>Maximum number of entries kept per event or listener. Older entries are dropped first.</summary>
+        public const int MaxEntries = 100;
+
         private readonly int _id;
         private readonly int _frameCount;
         private readonly string _stackTrace;
@@ -47,6 +51,7 @@ namespace ScriptableObjectArchitecture
         }
 
 
+        /// <summary>Returns true when <paramref name="other" /> has the same unique id.</summary>
         public bool Equals(StackTraceEntry other)
         {
             return other._id == _id;
@@ -60,6 +65,21 @@ namespace ScriptableObjectArchitecture
         }
 
 
+        /// <summary>
+        ///     Inserts <paramref name="entry" /> at the front of <paramref name="list" /> (most recent first) and
+        ///     drops the oldest entries so the list never holds more than <see cref="MaxEntries" />.
+        /// </summary>
+        public static void Record(List<StackTraceEntry> list, StackTraceEntry entry)
+        {
+            list.Insert(0, entry);
+
+            if (list.Count > MaxEntries)
+            {
+                list.RemoveRange(MaxEntries, list.Count - MaxEntries);
+            }
+        }
+
+
         /// <summary>Creates a parameterless <see cref="StackTraceEntry" /> capturing only the current call stack.</summary>
         public static StackTraceEntry Create()
         {
@@ -67,6 +87,7 @@ namespace ScriptableObjectArchitecture
         }
 
 
+        /// <summary>Returns true when <paramref name="obj" /> is a <see cref="StackTraceEntry" /> with the same unique id.</summary>
         public override bool Equals(object obj)
         {
             if (obj is StackTraceEntry)
@@ -78,12 +99,14 @@ namespace ScriptableObjectArchitecture
         }
 
 
+        /// <summary>Returns the unique id as the hash code.</summary>
         public override int GetHashCode()
         {
             return _id;
         }
 
 
+        /// <summary>Returns the frame count, optional payload value, and stack trace as text.</summary>
         public override string ToString()
         {
             if (_constructedWithValue)

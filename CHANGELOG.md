@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file. The changel
 
 For earlier versions, please refer to the [original CHANGELOG](https://github.com/DanielEverland/ScriptableObject-Architecture/releases)
 
+## [0.4.0] - 2026-11-13
+
+### Fixed
+
+- Player builds failed on an unguarded `using UnityEditor;` in `Utility/SOArchitectureBaseObject.cs`. `Variables/SceneVariable.cs` now guards its editor code with `#if UNITY_EDITOR`.
+- `GameEventBase.Raise` threw `ArgumentOutOfRangeException` when a response removed two or more listeners. Raise now iterates a pooled snapshot.
+- A listener removed during a raise is skipped. A listener added during a raise runs from the next raise.
+- Typed `RemoveAll` now also clears the typed listener and action lists.
+- Listeners recorded a stack trace on every raise, so memory grew without bound. Stack traces are now recorded only in editor debug mode, capped by `StackTraceEntry.MaxEntries` (100).
+- Gizmo debug entries are gated and capped the same way.
+
+### Changed
+
+- `package.json`: Unity `2021.3` (was `2019.2`), adds dependency `com.unity.ugui` 1.0.0.
+- `Samples~/` renamed to visible `Samples/`. Sample path is `Samples/Samples`.
+- Runtime asmdef references `UnityEngine.UI`.
+- Samples asmdef references `UnityEngine.UI` and defines `SOA_SAMPLES_INPUT_SYSTEM` when `com.unity.inputsystem` is installed. `KeyboardMover` uses the new Input System only under that define.
+
+### Added
+
+- EditMode tests in `Tests/Editor/` (asmdef `ScriptableObject-Architecture.Tests`): `GameEventRaiseTests`, `StackTraceTests`, `PackageLayoutTests`.
+
 ## [0.2.1] - In progress
 
 ### Package Numbering Change

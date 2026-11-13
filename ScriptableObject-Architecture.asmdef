@@ -1,7 +1,9 @@
 {
   "name": "ScriptableObject-Architecture",
   "rootNamespace": "ScriptableObject-Architecture",
-  "references": [],
+  "references": [
+    "UnityEngine.UI"
+  ],
   "includePlatforms": [],
   "excludePlatforms": [],
   "allowUnsafeCode": false,

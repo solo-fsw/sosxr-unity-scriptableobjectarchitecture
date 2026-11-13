@@ -3,7 +3,8 @@
   "rootNamespace": "",
   "references": [
     "GUID:63ebd60d5c68886498ecfee04b5d6a12",
-    "GUID:75469ad4d38634e559750d17036d5f7c"
+    "GUID:75469ad4d38634e559750d17036d5f7c",
+    "UnityEngine.UI"
   ],
   "includePlatforms": [],
   "excludePlatforms": [],
@@ -12,6 +13,12 @@
   "precompiledReferences": [],
   "autoReferenced": true,
   "defineConstraints": [],
-  "versionDefines": [],
+  "versionDefines": [
+    {
+      "name": "com.unity.inputsystem",
+      "expression": "1.0.0",
+      "define": "SOA_SAMPLES_INPUT_SYSTEM"
+    }
+  ],
   "noEngineReferences": false
 }

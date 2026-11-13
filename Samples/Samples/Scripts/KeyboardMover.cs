@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-#if ENABLE_INPUT_SYSTEM
+#if ENABLE_INPUT_SYSTEM && SOA_SAMPLES_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
 
@@ -15,7 +15,7 @@ namespace ScriptableObjectArchitecture.Examples
 
         private void Awake()
         {
-            #if ENABLE_INPUT_SYSTEM
+            #if ENABLE_INPUT_SYSTEM && SOA_SAMPLES_INPUT_SYSTEM
             Debug.Log("Using new input system");
             #else
             Debug.Log("Using old input system");
@@ -25,7 +25,7 @@ namespace ScriptableObjectArchitecture.Examples
 
         private void Update()
         {
-            #if ENABLE_INPUT_SYSTEM
+            #if ENABLE_INPUT_SYSTEM && SOA_SAMPLES_INPUT_SYSTEM
             UseNewInputSystem();
             #else
             UseOldInputSystem();
@@ -33,6 +33,7 @@ namespace ScriptableObjectArchitecture.Examples
         }
 
 
+        #if ENABLE_INPUT_SYSTEM && SOA_SAMPLES_INPUT_SYSTEM
         /// <summary>
         ///     SOSXR: This is really not how I'm supposed to use the Keyboard input system, but I'm using it here to quickly get
         ///     some input.
@@ -67,6 +68,9 @@ namespace ScriptableObjectArchitecture.Examples
 
             transform.position += moveDirection * m_moveSpeed.Value * Time.deltaTime;
         }
+
+
+        #endif
 
 
         private void UseOldInputSystem()

@@ -160,7 +160,10 @@ namespace ScriptableObjectArchitecture
 
         private string _cachedGameObjectName;
 
-        /// <summary>Ordered list of stack trace entries recorded each time this listener was notified (most recent first).</summary>
+        /// <summary>
+        ///     Stack trace entries recorded each time this listener was notified (most recent first).
+        ///     Editor-only, only while SOArchitecture debug mode is enabled, and capped at <see cref="StackTraceEntry.MaxEntries" />.
+        /// </summary>
         public List<StackTraceEntry> StackTraces { get; } = new();
 
         /// <summary>The <see cref="ScriptableObject" /> game event this listener is registered with.</summary>
@@ -169,18 +172,26 @@ namespace ScriptableObjectArchitecture
         protected abstract UnityEventBase Response { get; }
 
 
+        /// <summary>Records a stack trace entry that includes <paramref name="obj" />. Editor debug mode only.</summary>
         public void AddStackTrace(object obj)
         {
             #if UNITY_EDITOR
-            StackTraces.Insert(0, StackTraceEntry.Create(obj));
+            if (SOArchitecturePreferences.IsDebugEnabled)
+            {
+                StackTraceEntry.Record(StackTraces, StackTraceEntry.Create(obj));
+            }
             #endif
         }
 
 
+        /// <summary>Records a stack trace entry without a payload. Editor debug mode only.</summary>
         public void AddStackTrace()
         {
             #if UNITY_EDITOR
-            StackTraces.Insert(0, StackTraceEntry.Create());
+            if (SOArchitecturePreferences.IsDebugEnabled)
+            {
+                StackTraceEntry.Record(StackTraces, StackTraceEntry.Create());
+            }
             #endif
         }
 
@@ -188,6 +199,12 @@ namespace ScriptableObjectArchitecture
         protected void CreateDebugEntry(UnityEventBase response)
         {
             #if UNITY_EDITOR
+            // Entries are only consumed by OnDrawGizmos. Without gizmos they would pile up forever.
+            if (!EnableGizmoDebuggin() || _debugEntries.Count >= MAX_DEBUG_ENTRIES)
+            {
+                return;
+            }
+
             for (var i = 0; i < response.GetPersistentEventCount(); i++)
             {
                 var gameObjectTarget = GetGameObject(response.GetPersistentTarget(i));
@@ -218,6 +235,7 @@ namespace ScriptableObjectArchitecture
         private const float DOT_WIDTH = 3;
         private const float EVENT_MOVEMENT_SPEED = 3;
         private const float EVENT_MIN_DISTANCE = 0.3f;
+        private const int MAX_DEBUG_ENTRIES = 100;
 
         private readonly List<DebugEvent> _debugEntries = new();
 
